@@ -1,10 +1,13 @@
 import React from 'react'
 import Hero from './homeitems/Hero'
-import Nav from '../../components/nav/Nav'
+import Nav from '../../components/nav/HomeNav'
 import MostPopular from './homeitems/MostPopular'
 import Testimonal from './homeitems/Testimonal'
 import Collections from './homeitems/Collections'
 import VideoSection from './homeitems/VideoSection'
+import FeaturesSection from './homeitems/FeaturesSection'
+import BlogSection from './homeitems/BlogSection'
+import Footer from './homeitems/Footer'
 
 function Home() {
   return (
@@ -23,6 +26,15 @@ function Home() {
       </div>
       <div className="">
         <VideoSection />
+      </div>
+      <div className="">
+        <FeaturesSection />
+      </div>
+      <div className="">
+        <BlogSection />
+      </div>
+      <div className="">
+        <Footer />
       </div>
     
     </div>

@@ -31,7 +31,7 @@ function Testimonal() {
                         </div>
                     </div>
                     <div className=" w-full h-[48%] text-center px-[10%]">
-                        <p className='text-[2.9vw] font- leading-6'>Showcase customer testimonials that build
+                        <p className='text-[2.9vw] font- leading-[3vw]'>Showcase customer testimonials that build
                             trust and inspire confidence in your products.</p>
                     </div>
                 </div>

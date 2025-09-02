@@ -1,7 +1,8 @@
 import React from "react";
 import homeherobg from "../../../assets/images/home/homeherobg.png";
 import HeroButton from "./HeroButton";
-import Nav from "../../../components/nav/Nav";
+import Nav from "../../../components/nav/HomeNav";
+import HomeNav from "../../../components/nav/HomeNav";
 
 function Hero() {
   return (
@@ -12,7 +13,7 @@ function Hero() {
     backgroundPosition: "center",
       }}
     >
-      <Nav />
+      <HomeNav />
   
 
 
