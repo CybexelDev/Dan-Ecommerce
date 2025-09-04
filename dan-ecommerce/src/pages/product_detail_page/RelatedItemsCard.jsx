@@ -1,9 +1,9 @@
 import React from 'react'
 import { CgArrowTopRight } from "react-icons/cg";
 
-function RelatedItemsCard({image,primaryColor,title,itemLink}) {
+function RelatedItemsCard({id,image,title,itemLink}) {
   return (
-    <a  href={itemLink} className='w-[31%] aspect[194/176] flex flex-col justify-between'>
+    <a  href={itemLink} id={id} className='w-[31%] aspect[194/176] flex flex-col justify-between'>
         <div className="relative w-full h-[89.65%] bg-[#f4f4f4] rounded-[.5vw]">
             <img src={image} alt="" className='w-full h-full' />
             <div className="absolute w-[2vw] bottom-0 right-0 aspect-square bg-white rounded-tl-[.5vw] flex justify-center items-center
@@ -12,7 +12,7 @@ function RelatedItemsCard({image,primaryColor,title,itemLink}) {
                     after:content-[''] after:absolute after:w-[.5vw] after:h-[.5vw] after:z-10 after:bg-[radial-gradient(circle_at_top_left,transparent_0%,_transparent_75%,_white_76%,_white_100%)]
                     after:bottom-[0vw] after:-left-[.5vw]
             ">
-                <div className="bg-red-400 rounded-full w-[70%] aspect-square flex items-center justify-center">
+                <div className="bg-[#f4f4f4] rounded-full w-[80%] aspect-square flex items-center justify-center">
                     <CgArrowTopRight />
                 </div>
             </div>

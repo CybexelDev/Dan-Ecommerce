@@ -139,18 +139,15 @@ function ProductDetail() {
                         <RelatedItemsCard
                         image={pimage1}
                         title={"Gold pressed carrot blend juice"} 
-                        itemLink={"#"}
-                        primaryColor={"red"}/>
+                        itemLink={"#"}/>
                         <RelatedItemsCard
                         image={pimage1}
                         title={"Gold pressed carrot blend juice"} 
-                        itemLink={"#"}
-                        primaryColor={"purple"}/>
+                        itemLink={"#"}/>
                         <RelatedItemsCard
                         image={pimage1}
                         title={"Gold pressed carrot blend juice"} 
-                        itemLink={"#"}
-                        primaryColor={"rose"}/>
+                        itemLink={"#"}/>
                     </div>
                     {/* Related item card section End */}
                 </div>
