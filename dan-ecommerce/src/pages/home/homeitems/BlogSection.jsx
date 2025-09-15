@@ -44,7 +44,7 @@ function BlogSection() {
                             Backgrounds in Your Projects</h4>
                     </div>
                     <div className="w-full h-[29%] ">
-                        <p className='text-[1.2vw] leading-3 text-gray-700'>Discover unique and inspiring ways to incorporate digital 
+                        <p className='text-[1.2vw] leading-[1.5vw] text-gray-700'>Discover unique and inspiring ways to incorporate digital 
                            backgrounds into your designs, from websites to social media.</p>
                     </div>
                 </div>

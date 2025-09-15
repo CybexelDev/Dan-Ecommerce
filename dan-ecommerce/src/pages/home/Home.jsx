@@ -11,7 +11,7 @@ import Footer from './homeitems/Footer'
 
 function Home() {
   return (
-    <div className='px-[3.8%] pt-[3%]  bg-white w-[100%] h-[100]'>
+    <div className='px-[3.8%] pt-[3%]  bg-white w-full h-[100]'>
       <div className="pb-[4%]">
         <Hero />
       </div>

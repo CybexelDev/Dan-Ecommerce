@@ -6,7 +6,7 @@ import HomeNav from "../../../components/nav/HomeNav";
 
 function Hero() {
   return (
-    <div className="parent-div w-full h-full aspect-[1440/730] relative flex flex-col justify-center items-center rounded-2xl "
+    <div className="parent-div w-full h-full aspect-[1440/730] relative flex flex-col justify-center items-center rounded-[1.5vw] "
     style={{
     backgroundImage: `url(${homeherobg})`,
     backgroundSize: "cover",
