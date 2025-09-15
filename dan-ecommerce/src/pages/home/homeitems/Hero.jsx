@@ -1,19 +1,26 @@
 import React from "react";
 import homeherobg from "../../../assets/images/home/homeherobg.png";
-import logo from "../../../assets/images/home/logo.png";
-import { FaSearch } from "react-icons/fa";
-import { FaShoppingBasket } from "react-icons/fa";
-import QuarterCircleBox from "./QuarterCircle";
+import HeroButton from "./HeroButton";
+import Nav from "../../../components/nav/HomeNav";
+import HomeNav from "../../../components/nav/HomeNav";
 
 function Hero() {
   return (
-    <div className="parent-div aspect-[1440/730] relative flex bg-[#e69f9f9d]">
-  {/* Background image */}
-  <img
-    className="w-full h-full absolute object-cover rounded-4xl"
-    src={homeherobg}
-  />
-  <QuarterCircleBox />
+    <div className="parent-div w-full h-full aspect-[1440/730] relative flex flex-col justify-center items-center rounded-[1.5vw] "
+    style={{
+    backgroundImage: `url(${homeherobg})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+      }}
+    >
+      <HomeNav />
+  
+
+
+<div className="button absolute bottom-[3.8%] right-[4%]  w-[6.5%] h-[5.5%]">
+  <HeroButton />
+</div>
+
 
   
 
