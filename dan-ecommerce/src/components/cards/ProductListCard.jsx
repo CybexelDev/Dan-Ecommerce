@@ -1,9 +1,9 @@
 import React from 'react'
 import { CgArrowTopRight } from "react-icons/cg";
 
-function ProductListCard({id,image,title,price, isOpen}) {
+function ProductListCard({id,image,title,price, isOpen, click}) {
   return (
-    <a  href="#" id={id} className={` ${ isOpen ? 'w-[31.15%]' :'w-[22.1%]' } h-[29.46%] aspect-[273/335] flex flex-col  justify-between`}>
+    <a onClick={click}  href="#" id={id} className={` ${ isOpen ? 'w-[31.15%]' :'w-[22.1%]' } h-[29.46%] aspect-[273/335] flex flex-col  justify-between`}>
         <div className='relative w-full h-[81.1%] bg-[#f4f4f4] rounded-[1vw] flex justify-center items-center'>
             <img src={image} alt=""
              className='w-[70%] aspect-[3/4] object-center  rounded-[1vw]' />
