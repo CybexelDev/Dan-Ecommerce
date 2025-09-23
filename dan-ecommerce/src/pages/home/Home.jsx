@@ -34,7 +34,7 @@ function Home() {
         <BlogSection />
       </div>
       <div className="">
-        <Footer />
+        <Footer/>
       </div>
     
     </div>

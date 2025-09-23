@@ -9,6 +9,7 @@ import { getCategorybasedProduct } from '../../API/userApi'
 
 function CollectionsPage() {
     const [isCategoryOpen, setIsCategoryOpen] = useState(true)
+
     const [products, setProducts] = useState([]);
 
 
@@ -16,6 +17,7 @@ function CollectionsPage() {
     
     console.log(firstCategoryId, "categoryValue>>>>>>>>>>>>>>");
     
+
 
     const categoryToggle = () => {
         setIsCategoryOpen(prev => !prev)
@@ -75,7 +77,7 @@ console.log(products, "products>>>>>>>>>>>>>>>>>>>>>>>");
     // end of selected option
     const sortOptions = ["Popularity", "Newest", "Best Rated", "Price: High to Low" , "Price: Low to High"];
   return (
-    <div className='relative w-[100vw] aspect-[1440/1663]   pt-[10.9%] mb-[3vw]  '>
+    <div className='relative w-full aspect-[1440/1663]   pt-[10.9%] mb-[3vw]  '>
         <Nav />
         <div className="w-[100%] h-[100%]  flex flex-col justify-between ">
             {/* Top bar Section  */}
