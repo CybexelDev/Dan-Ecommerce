@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductListCard from "../../components/cards/ProductListCard";
-import drinkpurple from "../../assets/images/collections_page/drinkpurple.png"
-import drinkgreen from "../../assets/images/collections_page/drinkgreen.png"
-import drinkyellow from "../../assets/images/collections_page/drinkyellow.png"
+import drinkpurple from "../../assets/images/collections_page/drinkpurple.png";
+import drinkgreen from "../../assets/images/collections_page/drinkgreen.png";
+import drinkyellow from "../../assets/images/collections_page/drinkyellow.png";
+import { useNavigate } from "react-router-dom";
 
 const products = [
   { id: 1, title: "Food & Beverages", image: drinkgreen, price: "$20.00" },
@@ -28,15 +29,32 @@ const products = [
   { id: 12, title: "Product 12", image: drinkyellow, price: "$75" },
 ];
 
-const ProductList = ({ isOpen }) => {
+const ProductList = ({ isOpen, productData }) => {
+ 
+  const [product, setProduct]=useState([])
+
+  console.log(product, "productData in product list rrrrrrrrrrrrrr");
+
+      const navigate = useNavigate();
+
+useEffect(() => {
+  const fetchProducts = async () => {
+    setProduct(productData.data);
+  };
+
+  fetchProducts();
+}, [productData]);
+
+
   return (
     <div className="w-full h-full flex flex-wrap justify-between">
-      {products.slice(0, isOpen  ? 9: 12 ).map((product) => (
+      {product?.slice(0, isOpen  ? 9: 12 )?.map((product) => (
         <ProductListCard
-         id={product.id}
-         title={product.title}
-         image={product.image}
-         price={product.price}
+          click={()=> navigate(`/product/${product._id}`)}
+         id={product._id}
+         title={product.productName}
+         image={product.images[0]}
+         price={product.rate}
          isOpen= {isOpen} />
       ))}
     </div>

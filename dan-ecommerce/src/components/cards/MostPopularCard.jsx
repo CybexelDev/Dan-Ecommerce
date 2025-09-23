@@ -4,8 +4,8 @@ import toprightarrowcircle from "../../assets/images/components/toprightarrowcir
 const MostPopularCard = ({ image, title, offer, price }) => {
   return (
   
-    <div className=" w-[31.11%] aspect- rounded-t-[1.5vw] flex flex-col ">
-      <div className="w-full aspect-square  rounded-[1.5vw] relative">
+    <div className=" w-[31.11%] aspect- rounded-t-[1.5vw] flex flex-col cursor-pointer">
+      <div className="w-full aspect-square  rounded-[1.5vw] relative cursor-pointer">
         <img className="w-full aspect-[1/1] rounded-[1.5vw] overflow-hidden object-cover object-center"
         src={image} 
         alt={title} />
@@ -20,8 +20,8 @@ const MostPopularCard = ({ image, title, offer, price }) => {
       </div>
       <div className="  w-full h-[18%]">
         <h4 className="text-[2vw]">{title}</h4>
-        <h6 className="text-[1vw] font-bold">{offer}</h6>
-        <p className="text-[0.9vw]">usd{price}</p>
+        <h6 className="text-[1vw] font-bold">{offer} % offer</h6>
+        <p className="text-[0.9vw]">usd {price}</p>
       </div>
     </div>
   );

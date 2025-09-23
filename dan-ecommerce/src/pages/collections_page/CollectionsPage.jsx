@@ -5,9 +5,20 @@ import listiconcenter from "../../assets/images/collections_page/listiconcenter.
 import searchicon from "../../assets/images/collections_page/searchicon.png"
 import ProductList from './ProductList'
 import CategoryList from './CategoryList'
+import { getCategorybasedProduct } from '../../API/userApi'
 
 function CollectionsPage() {
     const [isCategoryOpen, setIsCategoryOpen] = useState(true)
+
+    const [products, setProducts] = useState([]);
+
+
+    const [firstCategoryId, setFirstCategoryId] = useState("");
+    
+    console.log(firstCategoryId, "categoryValue>>>>>>>>>>>>>>");
+    
+
+
     const categoryToggle = () => {
         setIsCategoryOpen(prev => !prev)
     }
@@ -36,6 +47,32 @@ function CollectionsPage() {
         setIsSortOpen(false);
 
     }
+
+    useEffect(() => {
+    if (firstCategoryId) {
+      const fetchProducts = async () => {
+        try {
+          const data = await getCategorybasedProduct(firstCategoryId);
+          setProducts(data); 
+        } catch (error) {
+          console.error("Error fetching category products:", error);
+        }
+      };
+      fetchProducts();
+    }
+  }, [firstCategoryId]);
+
+console.log(products, "products>>>>>>>>>>>>>>>>>>>>>>>");
+
+
+
+
+  // callback function to receive from child
+  const handleCategoryId = (id) => {
+    setFirstCategoryId(id);
+    console.log("Received from child:", id);
+  };
+
 
     // end of selected option
     const sortOptions = ["Popularity", "Newest", "Best Rated", "Price: High to Low" , "Price: Low to High"];
@@ -106,7 +143,7 @@ function CollectionsPage() {
             {!isCategoryOpen ? (
             <div className="w-full h-[92.89%] flex justify-end pl-[3.6%] pr-[6.6%]">
                 <div className="h-full w-[95.1%]">
-                <ProductList />
+                <ProductList productData={products} />
                 </div>
             </div>
             ) : (
@@ -122,7 +159,7 @@ function CollectionsPage() {
                         {/* List category */}
                         <div className="w-full h-[2.9%] "></div>
                         <div className="w-full h-[97.1%] bg-[#f4f4f4] rounded-[1.5vw]">
-                            <CategoryList isCategoryOpen={isCategoryOpen} />
+                            <CategoryList onFirstCategorySelect={handleCategoryId}  isCategoryOpen={isCategoryOpen} />
                         </div>
 
                         {/* List category end */}
@@ -131,7 +168,7 @@ function CollectionsPage() {
                     {/* Products List Section */}
                     <div className="w-[66.75%] h-full ">
                         <div className="w-full h-[92.89%] flex justify-between ">
-                            <ProductList isOpen={isCategoryOpen} />
+                            <ProductList productData={products}  isOpen={isCategoryOpen} />
                         </div>
                     </div>
                 </div>

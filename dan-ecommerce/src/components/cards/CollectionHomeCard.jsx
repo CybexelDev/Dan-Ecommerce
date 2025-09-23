@@ -2,7 +2,7 @@ import React from 'react'
 import toprightarrowcircle from "../../assets/images/components/toprightarrowcircle.png"
 function CollectionHomeCard({image, category}) {
   return (
-    <div className="w-full h-full bg-[#f2f2f2] rounded-[1vw] relative overflow-hidden">
+    <div className="w-full h-full bg-[#f2f2f2] rounded-[1vw] relative overflow-hidden cursor-pointer">
         {/* Text behind the image */}
         <h4 className="absolute top-[5%] left-1/2 -translate-x-1/2  z-0 text-center text-[3vw] font-semibold leading-tight ">
             {category}

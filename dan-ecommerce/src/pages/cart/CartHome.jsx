@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from '../../components/nav/Nav'
 import PaymentCard from '../../components/cards/PaymentCard'
 import CartItemCard from './CartItemCard'
 import cartItemImage from "../../assets/images/collections_page/drinkpurple.png"
 import cartItemImage2 from "../../assets/images/collections_page/drinkgreen.png"
+import { getCart } from '../../API/userApi'
 
 function CartHome() {
+    const [cart, setCart] = useState([]);
+
+    console.log(cart, "cartttttttttttttttttttttttt");
+    
 
   const CartItems = [
   { id: 1, name: "GOLD PRESSED CARROT BLEND JUICE GOLD PRESSED CARROT BLEND JUICE", brand:"Dar al nahda Tr", image: cartItemImage,price: 745.03, qty: 2 },
@@ -16,6 +21,19 @@ function CartHome() {
 const handleDelete = (name) =>{
   // console.log(name, "deleted")
 }
+
+
+
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      const userId = "68c7c33bea2c350bb430b20d"; 
+      const data = await getCart(userId);
+      setCart(data);
+    };
+
+    fetchCart();
+  }, []);
 
 
 
@@ -57,15 +75,15 @@ const handleDelete = (name) =>{
                 </div>
               </div>
               <div className=" ">
-                {CartItems.map((item) => (
+                {cart?.map((item) => (
                   <CartItemCard 
-                  key={item.id}
-                  id={item.id}
-                  name = {item.name}
-                  brand = {item.brand}
-                  image={item.image}
-                  price = {item.price}
-                  qty = {item.qty}
+                  key={item._id}
+                  id={item._id}
+                  name = {item.productId.productName}
+                  brand = {item.productId.brandName}
+                  image={item.productId.images[0]}
+                  price = {item.productId.rate}
+                  qty = {item.quantity}
                   onDelete={ handleDelete}
                    />
                 ))}
