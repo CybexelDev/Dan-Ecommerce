@@ -12,11 +12,12 @@ function App() {
 
   return (
     <>
-      <Home />
-      {/* <ProductDetail /> */}
+      {/* <Home /> */}
+      {/* <ProductDetail />  */}
       {/* <CollectionsPage /> */}
       {/* <CartHome /> */}
       {/* <LoginAndSignup /> */}
+      <AboutHome />
       
 
     </>

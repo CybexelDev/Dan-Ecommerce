@@ -10,7 +10,7 @@ function Collections() {
         <div className=" h-[72%] flex flex-col justify-between">
             <div className=" h-[15.5%] flex">
                 <div className="w-full  flex-col justify-start px-1">
-                <h3 className='text-[1.5vw]'>Most Popular</h3>
+                <h3 className='text-[1.5vw]'>Our Collections</h3>
                 <p className='text-[1vw]'>Showcase your most popular products, front and center.</p>
             </div>
             <div className="w-full  flex text-[1.3vw] items-center justify-end px-4">
