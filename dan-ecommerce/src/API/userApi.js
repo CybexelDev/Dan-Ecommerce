@@ -47,7 +47,7 @@ export const getcategory = async (fetchProductdata) => {
 
 export const getCategorybasedProduct = async (id) => {
     try {
-        console.log(id, "idddddddddddddddddddddd");
+        // console.log(id, "idddddddddddddddddddddd");
         
         const response = await axios.get(`${BASE_URL}users/getCategoryProduct`,  {params:{ id: id} } );
 

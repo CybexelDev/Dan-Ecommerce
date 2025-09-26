@@ -12,6 +12,8 @@ import { useState } from 'react';
 
 
 function ProductDetail() {
+    // function for image section 
+    
 
     const { id } = useParams();
 
@@ -19,6 +21,7 @@ function ProductDetail() {
     const [categoryId, setCorrentCategoryId] = useState("");
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [quantity, setQuantity] = useState(1); // default value = 1
+    const [selectedImage, setSelectedImage] = useState(null);
 
 
 
@@ -46,6 +49,11 @@ function ProductDetail() {
                     const data = await getSingleProduct(id);
                     setProducts(data);
                     setCorrentCategoryId(data.categoryId);
+
+                    // Set default selected image
+                    if(data.images && data.images.length > 0){
+                        setSelectedImage(data.images[0])
+                    }
                 } catch (error) {
                     console.error("Error fetching category products:", error);
                 }
@@ -95,10 +103,11 @@ function ProductDetail() {
                 {/* Main image section        */}
                 <div className="relative  w-[51.23%] aspect-[687/892]  ">
                     <div className="absolute w-[8vw] aspect-[5/3.5] top-[0vw] right-[0vh] bg-white rounded-bl-[1vw] flex justify-center items-center 
-            before:content-['']  before:absolute before:w-[1.5vw] before:h-[1.5vw] before:z-10 before:bg-[radial-gradient(circle_at_bottom_left,transparent_0%,_transparent_75%,_white_76%,_white_100%)] 
-                    before:top-[0vw] before:-left-[1.5vw] before:mask-shape
-                    after:content-[''] after:absolute after:w-[1.5vw] after:h-[1.5vw] after:z-10 after:bg-[radial-gradient(circle_at_bottom_left,transparent_0%,_transparent_75%,_white_76%,_white_100%)]
-                    after:-bottom-[1.5vw] after:right-[0vw]">
+                        before:content-['']  before:absolute before:w-[1.5vw] before:h-[1.5vw] before:z-10 before:bg-[radial-gradient(circle_at_bottom_left,transparent_0%,_transparent_75%,_white_76%,_white_100%)] 
+                        before:top-[0vw] before:-left-[1.5vw] before:mask-shape
+                        after:content-[''] after:absolute after:w-[1.5vw] after:h-[1.5vw] after:z-10 after:bg-[radial-gradient(circle_at_bottom_left,transparent_0%,_transparent_75%,_white_76%,_white_100%)]
+                        after:-bottom-[1.5vw] after:right-[0vw]"
+                    >
                         <div className="h-[90%] aspect-square bg-[#f4f4f4] rounded-full flex justify-center items-center">
                             <img src={carticon} alt=""
                                 className='rounded-full w-[50%] ' />
@@ -106,17 +115,25 @@ function ProductDetail() {
                     </div>
                     <div className="w-full h-[91.4%] flex flex-col justify-between">
                         <div className="w-full h-[84%]  rounded-[1vw]">
-                            <img src={pimage1} alt=""
+                            <img src={selectedImage} alt=""
                                 className='w-full h-full rounded-[1vw]' />
                         </div>
                         <div className="w-full h-[13.4%]  flex justify-center ">
                             <div className="w-[54.5%]  flex justify-between">
-                                <ProductSmallImageCard
+                                {/* <ProductSmallImageCard
                                     image={pimage1} />
                                 <ProductSmallImageCard
                                     image={pimage1} />
                                 <ProductSmallImageCard
-                                    image={pimage1} />
+                                    image={pimage1} /> */}
+                                {products.images?.map((img, idx) => (
+                                    <ProductSmallImageCard
+                                    key={idx}
+                                    image={img}
+                                    isSelected={selectedImage === img}
+                                    onClick={() => setSelectedImage(img)}
+                                    />
+                                ))}
 
                             </div>
                         </div>

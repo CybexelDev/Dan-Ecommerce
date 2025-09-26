@@ -14,15 +14,16 @@ function CollectionsPage() {
 
 
     const [firstCategoryId, setFirstCategoryId] = useState("");
+    const [selectedCategoryName, setSelectedCategoryName] = useState("")
     
-    console.log(firstCategoryId, "categoryValue>>>>>>>>>>>>>>");
+    //  console.log(firstCategoryId, "categoryValue>>>>>>>>>>>>>>");
     
 
 
     const categoryToggle = () => {
         setIsCategoryOpen(prev => !prev)
     }
-    console.log(isCategoryOpen)
+    // console.log(isCategoryOpen)
 
     // Sort section setup
     const [isSortOpen, setIsSortOpen] = useState(false)
@@ -32,7 +33,7 @@ function CollectionsPage() {
     // Close Dropdown menu click menu outside 
     useEffect (() =>    {
         function handleClickOutside(event) {
-            if(dropDownRef.current && !dropDownRef.current(event.target)){
+            if(dropDownRef.current && !dropDownRef.current.contains(event.target)){
                 setIsSortOpen(false)
             }
         }
@@ -62,15 +63,16 @@ function CollectionsPage() {
     }
   }, [firstCategoryId]);
 
-console.log(products, "products>>>>>>>>>>>>>>>>>>>>>>>");
+//  console.log(products, "products>>>>>>>>>>>>>>>>>>>>>>>");
 
 
 
 
   // callback function to receive from child
-  const handleCategoryId = (id) => {
+  const handleCategoryId = (id,selectedCategoryName) => {
     setFirstCategoryId(id);
-    console.log("Received from child:", id);
+    setSelectedCategoryName(selectedCategoryName)
+     console.log("Received from child:", id,selectedCategoryName);
   };
 
 
@@ -91,7 +93,7 @@ console.log(products, "products>>>>>>>>>>>>>>>>>>>>>>>");
                     </button>
                     <div ref={dropDownRef} className="w-[79%] aspect-[226/60] flex flex-col justify-between">
                         <div className={`h-[51.6%] ${ isCategoryOpen ? 'w-[120%]' : 'w-full' }  flex  items-center`}>
-                            <h5 className={`text-[#803314]   font-semibold ${ isCategoryOpen ? 'text-[1.7vw]':'text-[1.8vw]'} `}>Food & Beverages</h5>
+                            <h5 className={`text-[#803314]   font-semibold ${ isCategoryOpen ? 'text-[1.7vw]':'text-[1.8vw]'} `}>{selectedCategoryName}</h5>
                         </div>
                         <div className="w-full h-[30%] bg-white flex  items-center">
                             <p className={`text-[1.14vw] font-semibold ${ isCategoryOpen ? 'text-[1.3.5vw]':'text-[1.4vw]'} `}>Showing all 30 results</p>

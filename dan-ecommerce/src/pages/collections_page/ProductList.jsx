@@ -33,7 +33,7 @@ const ProductList = ({ isOpen, productData }) => {
  
   const [product, setProduct]=useState([])
 
-  console.log(product, "productData in product list rrrrrrrrrrrrrr");
+  // console.log(product, "productData in product list rrrrrrrrrrrrrr");
 
       const navigate = useNavigate();
 
@@ -50,6 +50,7 @@ useEffect(() => {
     <div className="w-full h-full flex flex-wrap justify-between">
       {product?.slice(0, isOpen  ? 9: 12 )?.map((product) => (
         <ProductListCard
+          key={product._id}
           click={()=> navigate(`/product/${product._id}`)}
          id={product._id}
          title={product.productName}

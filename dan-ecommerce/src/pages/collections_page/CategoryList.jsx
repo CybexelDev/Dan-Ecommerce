@@ -31,13 +31,14 @@ function CategoryList({ onFirstCategorySelect }) {
   useEffect(() => {
     if (category.length > 0) {
       const firstId = category[0]._id;
-      onFirstCategorySelect(firstId);
+      const firstCategoryName = category[0].category
+      onFirstCategorySelect(firstId,firstCategoryName);
     }
   }, [category]);
 
-  const handleCategoryClick = (id) => {
+  const handleCategoryClick = (id, category) => {
     setOpenSubCategory((prev) => (prev === id ? null : id));
-    onFirstCategorySelect(id); // send clicked id to parent
+    onFirstCategorySelect(id,category); // send clicked id to parent
   };
 
 
@@ -50,7 +51,7 @@ function CategoryList({ onFirstCategorySelect }) {
     <div className='w-full h-full  px-[6.7%] pt-[2.54%]'>
       <div className="w-full  h-full">
         {category.map((item) => (
-          <div key={item._id} onClick={() => handleCategoryClick(item._id)} className="relative w-full aspect-[350/71] bg-white rounded-[1vw] mb-[3.5%]">
+          <div key={item._id} onClick={() => handleCategoryClick(item._id, item.category)} className="relative w-full aspect-[350/71] bg-white rounded-[1vw] mb-[3.5%]">
             <div className="absolute top-0 right-0 w-[2.65vw] aspect-square bg-[#f4f4f4] rounded-bl-[.5vw] flex justify-center items-center">
               <button onClick={() => toggleSubCategory(item._id)} className="w-[70%] aspect-square flex justify-center items-center bg-[#EDE4FC] rounded-full
                         before:content-['']  before:absolute before:w-[1vw] before:h-[1vw] before:z-10 before:bg-[radial-gradient(circle_at_bottom_left,transparent_0%,_transparent_75%,_#f4f4f4_76%,_#f4f4f4_100%)] 
