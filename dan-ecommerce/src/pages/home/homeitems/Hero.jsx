@@ -17,6 +17,7 @@ const fetchHeroImages = async () => {
 };
 
 function Hero() {
+
 const [images, setImages] = useState([]); 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -37,11 +38,14 @@ const [images, setImages] = useState([]);
   }, []);
 
   // next / prev buttons
+
   const handleNext = () => {
     if (currentIndex < images.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   };
+
+  // Go to prev image
 
   const handlePrev = () => {
     if (currentIndex > 0) {

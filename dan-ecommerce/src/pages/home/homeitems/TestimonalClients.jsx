@@ -14,6 +14,7 @@ function TestimonalClients({ clients }) {
             className="w-[15%] h-full object-contain"
             src={client?.image[0]}
             alt={client?.tittle}
+
           />
         ))}
       </div>
