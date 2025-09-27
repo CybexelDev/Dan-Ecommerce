@@ -9,6 +9,7 @@ import AboutClientCarousel from './AboutClientCarousel';
 import AboutPrivateLabelling from './AboutPrivateLabelling';
 import AboutSecondCarousel from './AboutSecondCarousel';
 import bgflower from '../../assets/images/about/bgflower.png'
+import AboutWaveSection from './AboutWaveSection';
 
 function AboutHome() {
   return (
@@ -112,31 +113,9 @@ function AboutHome() {
             </div>
             {/* Second Carousel section end */}
           </div>
-          <div className="w-full h-[14.74%] bg-black ">
+          <div className="w-full h-[14.74%] bg-red-400 ">
             {/* Wave section start */}
-            <div className="relative w-full h-full bg-[#f6f0f4]">
-  {/* Wave top divider */}
-  <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
-    <svg
-      className="relative block w-full h-[100%]"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1440 320"
-    >
-      <path
-        fill="#ffffff"   // top section color
-        d="M0,224L48,202.7C96,181,192,139,288,144C384,149,480,203,576,218.7C672,235,768,213,864,181.3C960,149,1056,107,1152,117.3C1248,128,1344,192,1392,224L1440,256L1440,0L0,0Z"
-      ></path>
-    </svg>
-  </div>
-
-  {/* Section content */}
-  <div className="relative z-10 px-8 py-20 text-center">
-    <h2 className="text-3xl font-bold text-gray-800">Wave Section</h2>
-    <p className="mt-4 text-lg text-gray-600">
-      This section has a smooth wave at the top
-    </p>
-  </div>
-</div>
+            <AboutWaveSection />
 
             {/* Wave section end */}
 
