@@ -9,13 +9,14 @@ import { getCategorybasedProduct } from '../../API/userApi'
 
 function CollectionsPage() {
     const [isCategoryOpen, setIsCategoryOpen] = useState(true)
+
     const [products, setProducts] = useState([]);
-
-
     const [firstCategoryId, setFirstCategoryId] = useState("");
+    const [totalProducts, setTotalProducts] = useState(0);
     
     console.log(firstCategoryId, "categoryValue>>>>>>>>>>>>>>");
     
+
 
     const categoryToggle = () => {
         setIsCategoryOpen(prev => !prev)
@@ -75,7 +76,7 @@ console.log(products, "products>>>>>>>>>>>>>>>>>>>>>>>");
     // end of selected option
     const sortOptions = ["Popularity", "Newest", "Best Rated", "Price: High to Low" , "Price: Low to High"];
   return (
-    <div className='relative w-[100vw] aspect-[1440/1663]   pt-[10.9%] mb-[3vw]  '>
+    <div className='relative w-full aspect-[1440/1663]   pt-[10.9%] mb-[3vw]  '>
         <Nav />
         <div className="w-[100%] h-[100%]  flex flex-col justify-between ">
             {/* Top bar Section  */}
@@ -92,7 +93,7 @@ console.log(products, "products>>>>>>>>>>>>>>>>>>>>>>>");
                             <h5 className={`text-[#803314]   font-semibold ${ isCategoryOpen ? 'text-[1.7vw]':'text-[1.8vw]'} `}>Food & Beverages</h5>
                         </div>
                         <div className="w-full h-[30%] bg-white flex  items-center">
-                            <p className={`text-[1.14vw] font-semibold ${ isCategoryOpen ? 'text-[1.3.5vw]':'text-[1.4vw]'} `}>Showing all 30 results</p>
+                            <p className={`text-[1.14vw] font-semibold ${ isCategoryOpen ? 'text-[1.3.5vw]':'text-[1.4vw]'} `}>Showing all {totalProducts} results</p>
                         </div>
                     </div>
                 </div>
@@ -141,7 +142,7 @@ console.log(products, "products>>>>>>>>>>>>>>>>>>>>>>>");
             {!isCategoryOpen ? (
             <div className="w-full h-[92.89%] flex justify-end pl-[3.6%] pr-[6.6%]">
                 <div className="h-full w-[95.1%]">
-                <ProductList productData={products} />
+                <ProductList productLengthdata={setTotalProducts} productData={products} />
                 </div>
             </div>
             ) : (
@@ -166,7 +167,7 @@ console.log(products, "products>>>>>>>>>>>>>>>>>>>>>>>");
                     {/* Products List Section */}
                     <div className="w-[66.75%] h-full ">
                         <div className="w-full h-[92.89%] flex justify-between ">
-                            <ProductList productData={products}  isOpen={isCategoryOpen} />
+                            <ProductList productLengthdata={setTotalProducts} productData={products}  isOpen={isCategoryOpen} />
                         </div>
                     </div>
                 </div>

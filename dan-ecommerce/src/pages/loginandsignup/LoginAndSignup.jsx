@@ -14,7 +14,7 @@ function LoginAndSignup() {
   };
 
   return (
-    <div className="w-full aspect-[1440/910]  pr-[5.48%]  pl-[3.62%] pt-[10vw] pb-[10vw] bg-white">
+    <div className="relative w-full aspect-[1440/910]  pr-[5.48%]  pl-[3.62%] pt-[10vw] pb-[10vw] bg-white">
       <Nav />
       <div className="w-full h-full  flex justify-between">
         <div className=" w-[63.56%] h-full flex flex-col justify-between ">

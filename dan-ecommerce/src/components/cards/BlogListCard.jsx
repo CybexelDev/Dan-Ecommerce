@@ -12,14 +12,14 @@ function BlogListCard({title, image, description}) {
                     after:-bottom-[1.5vw] after:left-[0vw]
                 ">
                     <div className="bg-[#d8d8d8] w-[87.5%] aspect-[98/29] rounded-full flex justify-center items-center"> 
-                     <p className='text-[1vw]'>{title}</p>
+                     <p className='text-[10px]'>{title}</p>
                     </div>
                 </div>
             <img src={image} alt="bloglistimage"
              className='w-full h-full rounded-[1.5vw]' />
         </div>
         <div className="h-[15%] aspect-[448/54] ">
-            <p className='text-[1.2vw]'>{description}</p>
+            <p className='text-[13px]'>{description}</p>
         </div>
     </div>
   )

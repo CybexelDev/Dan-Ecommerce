@@ -5,6 +5,7 @@ import categorybab from "../../../assets/images/collection/categorybarb.png"
 import { getCategorys } from '../.././../API/userApi'
 
 function Collections() {
+
     const [data, setdata] = useState([])
 
 
@@ -23,6 +24,7 @@ function Collections() {
                     <div className="w-full  flex text-[1.3vw] items-center justify-end px-4">
                         <a href="#">View All &rarr;</a>
                     </div>
+
                 </div>
                 <div className=" h-[77%] flex justify-between">
                     {data.map((item) => (
