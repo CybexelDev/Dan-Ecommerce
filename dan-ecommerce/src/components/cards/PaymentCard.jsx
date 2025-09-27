@@ -2,7 +2,7 @@ import React from 'react'
 
 function PaymentCard() {
   return (
-    <div className=' w-full aspect-[440/530]  rounded-[1.5vw] shadow-[0_0_8px_rgba(0,0,0,0.3)]  flex justify-center items-center '>
+    <div className=' w-full aspect-[440/530] bg-white  rounded-[1.5vw] shadow-[0_0_8px_rgba(0,0,0,0.3)]  flex justify-center items-center '>
         <div className="w-[89.54%] h-[91.32%]  flex flex-col justify-between">
             <div className="w-full h-[79.34%]  flex flex-col justify-between">
                 <div className="w-full h-[7%] ">

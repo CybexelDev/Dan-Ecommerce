@@ -27,10 +27,10 @@ function AddressAddAndForm({isAddress, onCancel}) {
                      />
                 </div>
             ) : (
-                <div className="w-full aspect-[816/114] bg-black/20 rounded-[1vw] shadow flex justify-center items-center ">
+                <div className="w-full aspect-[816/114] bg-white rounded-[1vw] shadow flex justify-center items-center ">
               <div className="w-[95%] aspect-[723/34] flex justify-between items-center">
-                <div className={`w-[4.2%] aspect-square  flex justify-center items-center rounded-[.5vw] ${isAddress ? "pl-[.6vw] pb-[.5vw] text-[2.5vw] font-bold " :"bg-[#D8D8D8] text-[1.5vw] font-semibold"}  `}>
-                  <p>{ isAddress ? ("+"):("2")}</p>
+                <div className={`w-[4.2%] aspect-square  flex justify-center items-center rounded-[.5vw] ${!isAddress ? "pl-[.6vw] pb-[.5vw] text-[2.5vw] font-bold " :"bg-[#D8D8D8] text-[1.5vw] font-semibold"}  `}>
+                  <p>{ isAddress ? ("2"):("+")}</p>
                 </div>
                 <div className="w-[93.5%] h-full flex justify-between">
                   <div className="w-full h-full flex items-center">

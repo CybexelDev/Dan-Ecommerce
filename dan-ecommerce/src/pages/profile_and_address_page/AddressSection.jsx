@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import selectedmark from "../../assets/images/profileandaddress/selectedmark.png"
 import AddressAddAndForm from './AddressAddAndForm'
 import AddressCard from './AddressCard'
+import AddressForm from './AddressForm'
 
 
 function AddressSection() {
   const [isOpen, setIsopen] = useState(false)
-  const [isAddress, setIsAddress] = useState(false)
-  const [addresses, setAddress] = useState([])
+  const [addresses, setAddresses] = useState([])
   
   useEffect(() =>{
     const fetchAddresses = async () =>{
@@ -30,7 +30,8 @@ function AddressSection() {
 
   return (
         <div className="flex flex-col gap-[2vw]">
-  {isAddress && addresses.length > 0 ? (
+  <div className="d">
+    {addresses && addresses.length > 0 ? (
     addresses.map((addr) => (
       <AddressCard
         key={addr.id}
@@ -44,6 +45,8 @@ function AddressSection() {
   ) : (
     <p className="text-gray-500 text-sm">No addresses found</p>
   )}
+  </div>
+  <AddressAddAndForm isAddress={addresses.length > 0} />
 </div>
 
   );

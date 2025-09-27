@@ -8,6 +8,7 @@ import CartHome from './pages/cart/CartHome'
 import LoginAndSignup from './pages/loginandsignup/LoginAndSignup'
 import AboutHome from './pages/about/AboutHome'
 import { useSelector } from "react-redux";
+import ProfileAndAddress from './pages/profile_and_address_page/ProfileAndAddress';
 
 
 function App() {
@@ -18,31 +19,32 @@ function App() {
    const token = localStorage.getItem("accessToken");
    
   return (
-    <Router>
-      <Routes>
+    // <Router>
+    //   <Routes>
 
-        {token ? (
-          <>
-            <Route path="*" element={<Home />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/collections" element={<CollectionsPage />} />
-            <Route path="/cart" element={<CartHome />} />
-          </>
-        ) :
+    //     {token ? (
+    //       <>
+    //         <Route path="*" element={<Home />} />
+    //         <Route path="/" element={<Home />} />
+    //         <Route path="/product/:id" element={<ProductDetail />} />
+    //         <Route path="/collections" element={<CollectionsPage />} />
+    //         <Route path="/cart" element={<CartHome />} />
+    //       </>
+    //     ) :
 
-          (
-            <>
-              <Route path="*" element={<LoginAndSignup />} />
-              <Route path="/login" element={<LoginAndSignup />} />
-            </>
-          )
+    //       (
+    //         <>
+    //           <Route path="*" element={<LoginAndSignup />} />
+    //           <Route path="/login" element={<LoginAndSignup />} />
+    //         </>
+    //       )
 
-        }
+    //     }
 
 
-      </Routes>
-    </Router>
+    //   </Routes>
+    // </Router>
+    <ProfileAndAddress />
 
   )
 }
