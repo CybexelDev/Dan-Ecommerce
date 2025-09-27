@@ -11,10 +11,12 @@ function CollectionsPage() {
     const [isCategoryOpen, setIsCategoryOpen] = useState(true)
 
     const [products, setProducts] = useState([]);
-
-
     const [firstCategoryId, setFirstCategoryId] = useState("");
+
+    const [totalProducts, setTotalProducts] = useState(0);
+
     const [selectedCategoryName, setSelectedCategoryName] = useState("")
+
     
     //  console.log(firstCategoryId, "categoryValue>>>>>>>>>>>>>>");
     
@@ -96,7 +98,7 @@ function CollectionsPage() {
                             <h5 className={`text-[#803314]   font-semibold ${ isCategoryOpen ? 'text-[1.7vw]':'text-[1.8vw]'} `}>{selectedCategoryName}</h5>
                         </div>
                         <div className="w-full h-[30%] bg-white flex  items-center">
-                            <p className={`text-[1.14vw] font-semibold ${ isCategoryOpen ? 'text-[1.3.5vw]':'text-[1.4vw]'} `}>Showing all 30 results</p>
+                            <p className={`text-[1.14vw] font-semibold ${ isCategoryOpen ? 'text-[1.3.5vw]':'text-[1.4vw]'} `}>Showing all {totalProducts} results</p>
                         </div>
                     </div>
                 </div>
@@ -145,7 +147,7 @@ function CollectionsPage() {
             {!isCategoryOpen ? (
             <div className="w-full h-[92.89%] flex justify-end pl-[3.6%] pr-[6.6%]">
                 <div className="h-full w-[95.1%]">
-                <ProductList productData={products} />
+                <ProductList productLengthdata={setTotalProducts} productData={products} />
                 </div>
             </div>
             ) : (
@@ -170,7 +172,7 @@ function CollectionsPage() {
                     {/* Products List Section */}
                     <div className="w-[66.75%] h-full ">
                         <div className="w-full h-[92.89%] flex justify-between ">
-                            <ProductList productData={products}  isOpen={isCategoryOpen} />
+                            <ProductList productLengthdata={setTotalProducts} productData={products}  isOpen={isCategoryOpen} />
                         </div>
                     </div>
                 </div>

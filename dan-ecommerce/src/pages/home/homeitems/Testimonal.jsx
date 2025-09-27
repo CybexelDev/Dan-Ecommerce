@@ -4,6 +4,8 @@ import TestimonalButton from "./TestimonalButton";
 import TestimonalClients from "./TestimonalClients";
 import authorimg from "../../../assets/images/testimonals/authorprofile.png"
 import clientimg from "../../../assets/images/testimonals/clientlogo.png"
+import { useEffect } from "react";
+import { getBrand, getTestimaonial } from "../../../API/userApi";
 
 
 // dummy data (replace with API later)
@@ -24,9 +26,14 @@ const clientsData = [
 
 function Testimonal() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [testimonals, setTestimonials] = useState([])
+  const [brand, setbrand] = useState([])
+
+  console.log(testimonals, "testimonals data >>>>>>>>>");
+  
 
   const handleNext = () => {
-    if (currentIndex < testimonialsData.length - 1) {
+    if (currentIndex < testimonals.length - 1) {
       setCurrentIndex((prev) => prev + 1);
     }
   };
@@ -37,7 +44,16 @@ function Testimonal() {
     }
   };
 
-  const currentTestimonial = testimonialsData[currentIndex];
+  const currentTestimonial = testimonals[currentIndex];
+
+
+  useEffect(()=>{
+    getTestimaonial(setTestimonials)
+  },[])
+
+useState(()=>{
+  getBrand(setbrand)
+},[])
 
   return (
     <div className="w-full relative flex flex-col justify-center aspect-[1440/638] bg-black/20 rounded-[1vw] mb-[2vh]">
@@ -46,20 +62,20 @@ function Testimonal() {
         onPrev={handlePrev}
         onNext={handleNext}
         disablePrev={currentIndex === 0}
-        disableNext={currentIndex === testimonialsData.length - 1}
+        disableNext={currentIndex === testimonals.length - 1}
       />
 
       {/* Testimonial Section */}
       <div className="w-full h-[75%] aspect-[1440/478] flex flex-col justify-between">
         <TestimonialCard
-          image={currentTestimonial.image}
-          quote={currentTestimonial.quote}
-          rating={currentTestimonial.rating}
-          name={currentTestimonial.name}
+          image={currentTestimonial?.image[0]}
+          quote={currentTestimonial?.message}
+          rating={currentTestimonial?.starRating}
+          name={currentTestimonial?.name}
         />
 
         {/* Clients Section */}
-        <TestimonalClients clients={clientsData} />
+        <TestimonalClients clients={brand} />
       </div>
     </div>
   );

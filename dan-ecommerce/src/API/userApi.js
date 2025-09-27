@@ -119,4 +119,111 @@ export const addCart = async (userId, productId, quantity) => {
   }
 };
 
+export const getHeader = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}users/header`);
+    return response.data; // { message, data }
+  } catch (error) {
+    console.error("Error fetching header:", error);
+    throw error;
+  }
+};
 
+
+export const getBlogs = async () => {
+  try {
+      const res = await axios.get(`${BASE_URL}users/getBlogs`);
+  return res.data; // returns { message, data }
+    
+  } catch (error) {
+    res.status(500).json(error)
+  }
+
+};
+
+
+export const mobilLogin = async (mobile) => {
+  try {
+      const res = await axios.post(`${BASE_URL}auth/send-otp`, {phone: mobile});
+      return res.data; // returns { message, data }
+    
+  } catch (error) {
+    console.error("Error in mobile login:", error);
+    throw error;
+  }
+}
+
+export const verifyMobilLogin = async (mobile,otp) => {
+  try {
+      const res = await axios.post(`${BASE_URL}auth/verify-otp`, {phone: mobile, otp: otp});
+       console.log(res.data, "number login response");
+      
+       if(res.data.message && res.data.token){
+        localStorage.setItem('accessToken', res.data.token);
+        localStorage.setItem('userName', res.data.user.email);
+        return res.data;
+
+        }else{
+            return false
+        }
+    
+  } catch (error) {
+    console.error("Error in mobile login:", error);
+    throw error;
+  }
+}
+
+export const emailLogin = async (email) => {
+  try {
+      const res = await axios.post(`${BASE_URL}auth/sendEmailOtp`, {email: email});
+
+  } catch (error) {
+    console.error("Error in email login:", error);
+    throw error;
+  }
+}
+
+
+export const verifyEmailLogin = async (email, otp) => {
+  try {
+      const res = await axios.post(`${BASE_URL}auth/verifyEmailOtp`, {email: email, otp: otp});
+      
+       console.log(res.data, "email login response >>>>>>777777");
+      
+       if(res.data.message && res.data.token){
+        localStorage.setItem('accessToken', res.data.token);
+        localStorage.setItem('userName', res.data.user.email);
+        return res.data;
+
+        }else{
+            return false
+        }
+    
+  } catch (error) {
+    console.error("Error in email login:", error);
+    throw error;
+  }
+}
+
+
+
+export const getTestimaonial = async (fetchTestimaonial) => {
+  try {
+      const res = await axios.get(`${BASE_URL}users/getTestimonials`);
+      fetchTestimaonial(res.data.data); 
+  } catch (error) {
+    res.status(500).json(error)
+  }
+
+};
+
+
+export const getBrand = async (fetchBrand) => {
+  try {
+      const res = await axios.get(`${BASE_URL}users/getBrand`);
+      fetchBrand(res.data.data); 
+  } catch (error) {
+    res.status(500).json(error)
+  }
+
+};

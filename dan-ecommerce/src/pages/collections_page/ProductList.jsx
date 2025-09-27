@@ -29,26 +29,34 @@ const products = [
   { id: 12, title: "Product 12", image: drinkyellow, price: "$75" },
 ];
 
-const ProductList = ({ isOpen, productData }) => {
- 
-  const [product, setProduct]=useState([])
+const ProductList = ({ isOpen, productData, productLengthdata }) => {
+
+  const [product, setProduct] = useState([])
+
 
   // console.log(product, "productData in product list rrrrrrrrrrrrrr");
 
-      const navigate = useNavigate();
+  const navigate = useNavigate();
 
-useEffect(() => {
-  const fetchProducts = async () => {
-    setProduct(productData.data);
-  };
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setProduct(productData.data);
+    };
 
-  fetchProducts();
-}, [productData]);
+    fetchProducts();
+  }, [productData]);
+
+
+    useEffect(() => {
+    if (product) {
+      productLengthdata(product.length);
+    }
+  }, [product]);
 
 
   return (
     <div className="w-full h-full flex flex-wrap justify-between">
-      {product?.slice(0, isOpen  ? 9: 12 )?.map((product) => (
+      {product?.slice(0, isOpen ? 9 : 12)?.map((product) => (
         <ProductListCard
           key={product._id}
           click={()=> navigate(`/product/${product._id}`)}
@@ -57,6 +65,7 @@ useEffect(() => {
          image={product.images[0]}
          price={product.rate}
          isOpen= {isOpen} />
+
       ))}
     </div>
   );

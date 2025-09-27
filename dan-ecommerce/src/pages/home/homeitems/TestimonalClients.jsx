@@ -12,8 +12,9 @@ function TestimonalClients({ clients }) {
           <img
             key={index}
             className="w-[15%] h-full object-contain"
-            src={client.image || clientlogo}
-            alt={client.name}
+            src={client?.image[0]}
+            alt={client?.tittle}
+
           />
         ))}
       </div>

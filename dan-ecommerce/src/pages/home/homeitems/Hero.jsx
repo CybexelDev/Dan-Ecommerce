@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import HeroButton from "./HeroButton";
 import HomeNav from "../../../components/nav/HomeNav";
-import homeherobg from "../../../assets/images/home/homeherobg.png";
-
+import { getHeader } from "../../../API/userApi";
+import { useSelector } from "react-redux";
 // Simulating backend API fetch
 const fetchHeroImages = async () => {
+
+
+
   return [
     homeherobg, // local image will be first by default
     "https://picsum.photos/id/1018/1440/730",
@@ -14,19 +17,28 @@ const fetchHeroImages = async () => {
 };
 
 function Hero() {
-  const [images, setImages] = useState([]);
+
+const [images, setImages] = useState([]); 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Fetch images
+  // ✅ fetch header images from backend
   useEffect(() => {
-    const loadImages = async () => {
-      const data = await fetchHeroImages();
-      setImages(data);
+    const fetchHeaderImages = async () => {
+      try {
+        const res = await getHeader();
+        // take all webImage arrays and flatten them
+        const headerImages = res.data.flatMap(item => item.webImage);
+        setImages(headerImages); // only backend images
+      } catch (error) {
+        console.error("Error fetching header:", error);
+      }
     };
-    loadImages();
+
+    fetchHeaderImages();
   }, []);
 
-  // Go to next image
+  // next / prev buttons
+
   const handleNext = () => {
     if (currentIndex < images.length - 1) {
       setCurrentIndex(currentIndex + 1);
@@ -34,17 +46,22 @@ function Hero() {
   };
 
   // Go to prev image
+
   const handlePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
   };
 
+
+   const { username, accessToken, isLoggedIn } = useSelector((state) => state.auth);
+   console.log(username, accessToken, isLoggedIn , "99999999999999999999999999999");
+
   return (
     <div
-      className="parent-div w-full max-h-[90vh] aspect-[1440/730] relative flex flex-col justify-center items-center rounded-[1.5vw]"
+      className="parent-div w-full h-[92vh] aspect-[1440/730] relative flex flex-col justify-center items-center rounded-[1.5vw]"
       style={{
-        backgroundImage: `url(${images[currentIndex] || homeherobg})`,
+        backgroundImage: `url(${images[currentIndex]})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         transition: "background-image 0.5s ease-in-out",
