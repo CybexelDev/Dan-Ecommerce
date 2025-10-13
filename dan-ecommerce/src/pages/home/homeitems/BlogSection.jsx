@@ -54,7 +54,7 @@ function BlogSection() {
                                 <p className='text-[10px]'>{blogs[0]?.category}</p>
                             </div>
                         </div>
-                        <img src={blogs[0]?.image[0]} alt="main blog image" className='w-full h-full rounded-l-[1.5vw]' />
+                        {/* <img src={blogs[0]?.image[0]} alt="main blog image" className='w-full h-full rounded-l-[1.5vw]' /> */}
                     </div>
                     {/* End Blog image Section */}
                     {/* Blog detail Section */}
@@ -101,7 +101,7 @@ function BlogSection() {
 
             {/* Blog List Starting */}
             <div className="w-full h-[35.5%]  flex justify-between">
-                {blogs.slice(1).map((product) => (
+              {blogs.slice(1).map((product) => (
                     <BlogListCard
                         title={product?.category}
                         image={product?.image[0]}

@@ -30,6 +30,7 @@ function MostPopular() {
 
       {/* Starting Card Section */}
       <div className=" w-full flex justify-between aspect-[1440/541] ">
+
         {popularProducts.map((product) => (
           <MostPopularCard
             click={() => navigate(`/product/${product._id}`)}
@@ -38,7 +39,7 @@ function MostPopular() {
             offer={product.discount}
             price={product.rate}
           />
-        ))}
+        ))} 
 
         {/* <MostPopularCard
             image={mp2}

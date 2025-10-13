@@ -8,7 +8,7 @@ function TestimonalClients({ clients }) {
         <p>Feature client logos to build trust and credibility for your brand:</p>
       </div>
       <div className="w-[42%] aspect-[600/27] mx-auto flex justify-center items-center gap-[1.8vw] py-[.6vh]">
-        {clients.map((client, index) => (
+        {/* {clients.map((client, index) => (
           <img
             key={index}
             className="w-[15%] h-full object-contain"
@@ -16,7 +16,7 @@ function TestimonalClients({ clients }) {
             alt={client?.tittle}
 
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );
