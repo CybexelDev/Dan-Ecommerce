@@ -4,12 +4,12 @@ import mp2 from "../../../assets/images/mostpopular/mp2.png"
 import mp3 from "../../../assets/images/mostpopular/mp3.png"
 import MostPopularCard from '../../../components/cards/MostPopularCard'
 import { getpopulearProducts } from '../../../API/userApi'
-
+import { useNavigate } from "react-router-dom";
 
 function MostPopular() {
 
   const [popularProducts, setPopularProducts] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     getpopulearProducts(setPopularProducts);
   }, [])
@@ -22,7 +22,7 @@ function MostPopular() {
           <h3 className='text-[1.5vw]'>Most Popular</h3>
           <p className='text-[1vw]'>Showcase your most popular products, front and center.</p>
         </div>
-        <div className="w-full  flex text-[1.3vw] items-center justify-end px-4">
+        <div onClick={()=>navigate('/collections')} className="w-full  flex text-[1.3vw] items-center justify-end px-4">
           <a href="#">View All &rarr;</a>
         </div>
       </div>
@@ -31,14 +31,15 @@ function MostPopular() {
       {/* Starting Card Section */}
       <div className=" w-full flex justify-between aspect-[1440/541] ">
 
-        {/* {popularProducts.map((product) => (
+        {popularProducts.map((product) => (
           <MostPopularCard
+            click={() => navigate(`/product/${product._id}`)}
             image={product.images[0]}
             title={product.productName}
             offer={product.discount}
             price={product.rate}
           />
-        ))} */}
+        ))} 
 
         {/* <MostPopularCard
             image={mp2}

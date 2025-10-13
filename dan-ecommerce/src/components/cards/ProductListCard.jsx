@@ -1,16 +1,10 @@
 import React from 'react'
 import { CgArrowTopRight } from "react-icons/cg";
-import { useNavigate } from 'react-router-dom';
 
-function ProductListCard({id,image,title,price, isOpen}) {
-    const navigate = useNavigate();
+function ProductListCard({id,image,title,price, isOpen, click}) {
 
-    const handleClick = (e) => {
-        e.preventDefault();
-        navigate(`/product/${productid}`);
-    }
   return (
-    <a onClick={handleClick}  href="#" id={id} className={` ${ isOpen ? 'w-[31.15%]' :'w-[22.1%]' } h-[29.46%] aspect-[273/335] flex flex-col  justify-between`}>
+    <a onClick={click}  href="#" id={id} className={` ${ isOpen ? 'w-[31.15%]' :'w-[22.1%]' } h-[29.46%] aspect-[273/335] flex flex-col `}>
         <div className='relative w-full h-[81.1%] bg-[#f4f4f4] rounded-[1vw] flex justify-center items-center'>
             <img src={image} alt=""
              className='w-[100%] h-full object-center object-cover  rounded-[1vw] overflow-hidden' />
@@ -25,7 +19,7 @@ function ProductListCard({id,image,title,price, isOpen}) {
                 </div>
             </div>
         </div>
-        <div className='w-full h-[16%] '>
+        <div className='w-full h-[16%] mt-3'>
             <div className="w-full h-[61%] flex items-center">
                 <h5 className="text-[1.7vw] font-semibold text-left w-full h-full overflow-hidden">
                     {title}

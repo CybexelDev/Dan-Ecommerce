@@ -5,7 +5,7 @@ import greentick from "../../assets/images/login/greentick.png"
 import React, { useState } from "react";
 import { emailLogin, mobilLogin, verifyEmailLogin, verifyMobilLogin } from "../../API/userApi";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/app/store";
+// import { login } from "../../redux/app/store";
 
 const LoginForm = () => {
   const [step, setStep] = useState(1); // 1 = email/phone input, 2 = OTP
@@ -89,26 +89,33 @@ const LoginForm = () => {
 
         console.log(response, "email otp verify response >>>>>>");
 
-        dispatch(login({
-          username: response?.user?.email,
-          accessToken: response?.token,
-          userId: response?.user?.id,
-        }));
+        dispatch({
+          type: "SET_USER",
+          payload: {
+            username: response?.user?.email,
+            accessToken: response?.token,
+            userId: response?.user?.id,
+          },
+        });
+
 
       } catch {
         setError("OTP verification failed.");
       }
-    }else if (isMobile(value)) {
-       try {
+    } else if (isMobile(value)) {
+      try {
         const response = await verifyMobilLogin(value, otp);
 
         console.log(response, "mobile number otp verify response >>>>>>");
 
-        dispatch(login({
-          username: response?.user?.email,
-          accessToken: response?.token,
-          userId: response?.user?.id,
-        }));
+          dispatch({
+          type: "SET_USER",
+          payload: {
+            username: response?.user?.email,
+            accessToken: response?.token,
+            userId: response?.user?.id,
+          },
+        });
 
       } catch {
         setError("OTP verification failed.");

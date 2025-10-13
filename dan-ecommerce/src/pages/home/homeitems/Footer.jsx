@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className='w-full aspect-[1440/321] bg-[#d8d8d8] mb-[5vw] relative flex flex-col items-center rounded-[1vw]'>
+    <div className='w-full aspect-[1440/321] bg-[#d8d8d8] mb-[4vw] relative flex flex-col items-center rounded-[1vw]'>
         {/* Top button Section End */}
         <div className="absolute bg-white  top-0 left-0 w-[17.5%] aspect-[1312/217]  rounded-br-[1vw] 
           before:content-['']  before:absolute before:w-[1.5vw] before:h-[1.5vw] before:z-10 before:bg-[radial-gradient(circle_at_bottom_right,transparent_0%,_transparent_75%,_white_76%,_white_100%)] 

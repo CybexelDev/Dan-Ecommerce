@@ -64,7 +64,10 @@ function BlogSection() {
                                 <h4 className='text-[2.2vw] leading-[3vw] font-semibold'>{blogs[0]?.head}</h4>
                             </div>
                             <div className="w-full h-[29%] ">
-                                <p className='text-[1.2vw] leading-[1.5vw] text-gray-700'>{blogs[0]?.tittle}</p>
+                                <p className='text-[1.2vw] leading-[1.5vw] text-gray-700'>{blogs[0]?.tittle.length > 450 ?
+                                    blogs[0]?.tittle.slice(0, 450) + "..."
+                                    : blogs[0]?.tittle}
+                                </p>
                             </div>
                         </div>
                         <div className="absolute bottom-[5%] left-[5%] w-[27%] aspect-[203/45] flex ">
@@ -98,20 +101,12 @@ function BlogSection() {
 
             {/* Blog List Starting */}
             <div className="w-full h-[35.5%]  flex justify-between">
-                {/* {blogs.slice(1).map((product) => (
+              {blogs.slice(1).map((product) => (
                     <BlogListCard
                         title={product?.category}
                         image={product?.image[0]}
                         description={product?.tittle} />
-                ))} */}
-                {/* <BlogListCard
-                    title="Guides"
-                    image={bloglistimage}
-                    description="How to Make Your Social Media Posts Stand Out with Templates" />
-                <BlogListCard
-                    title="Trends"
-                    image={bloglistimage}
-                    description="How to Make Your Social Media Posts Stand Out with Templates" /> */}
+                ))}
             </div>
             {/* Blog list ending */}
         </div>

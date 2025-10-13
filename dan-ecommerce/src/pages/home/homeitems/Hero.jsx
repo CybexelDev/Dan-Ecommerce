@@ -54,12 +54,11 @@ const [images, setImages] = useState([]);
   };
 
 
-   const { username, accessToken, isLoggedIn } = useSelector((state) => state.auth);
-   console.log(username, accessToken, isLoggedIn , "99999999999999999999999999999");
+
 
   return (
     <div
-      className="parent-div w-full h-[92vh] aspect-[1440/730] relative flex flex-col justify-center items-center rounded-[1.5vw]"
+      className="parent-div w-full md:h-[92vh] h-[20vh] aspect-[1440/730] relative flex flex-col justify-center items-center rounded-[1.5vw]"
       style={{
         backgroundImage: `url(${images[currentIndex]})`,
         backgroundSize: "cover",
