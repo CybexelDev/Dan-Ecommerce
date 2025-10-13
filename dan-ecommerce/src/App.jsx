@@ -9,42 +9,46 @@ import LoginAndSignup from './pages/loginandsignup/LoginAndSignup'
 import AboutHome from './pages/about/AboutHome'
 import { useSelector } from "react-redux";
 import ProfileAndAddress from './pages/profile_and_address_page/ProfileAndAddress';
+import BlogPage from './pages/blogPage/blogPage';
+import SupportPage from './pages/SupportPage/SupportPage';
 
 
 function App() {
   const [count, setCount] = useState(0)
-  const { username, accessToken, isLoggedIn } = useSelector((state) => state.auth);
+    const { username, accessToken, isLoggedIn } = useSelector((state) => state.auth);
    console.log(username, accessToken, isLoggedIn , "99999999999999999999999999999");
 
-   const token = localStorage.getItem("accessToken");
-   
+  const token = localStorage.getItem("accessToken");
+
   return (
-    // <Router>
-    //   <Routes>
+    <Router>
+      <Routes>
 
-    //     {token ? (
-    //       <>
-    //         <Route path="*" element={<Home />} />
-    //         <Route path="/" element={<Home />} />
-    //         <Route path="/product/:id" element={<ProductDetail />} />
-    //         <Route path="/collections" element={<CollectionsPage />} />
-    //         <Route path="/cart" element={<CartHome />} />
-    //       </>
-    //     ) :
+        {token ? (
+          <>
+            <Route path="*" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/collections" element={<CollectionsPage />} />
+            <Route path="/cart" element={<CartHome />} />
+            <Route path="/address" element={<ProfileAndAddress />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/support" element={<SupportPage />} />
+          </>
+        ) :
 
-    //       (
-    //         <>
-    //           <Route path="*" element={<LoginAndSignup />} />
-    //           <Route path="/login" element={<LoginAndSignup />} />
-    //         </>
-    //       )
+          (
+            <>
+              <Route path="*" element={<LoginAndSignup />} />
+              <Route path="/login" element={<LoginAndSignup />} />
+            </>
+          )
 
-    //     }
+        }
 
 
-    //   </Routes>
-    // </Router>
-    <ProfileAndAddress />
+      </Routes>
+    </Router>
 
   )
 }

@@ -161,6 +161,7 @@ export const verifyMobilLogin = async (mobile,otp) => {
        if(res.data.message && res.data.token){
         localStorage.setItem('accessToken', res.data.token);
         localStorage.setItem('userName', res.data.user.email);
+        localStorage.setItem('userId', res.data.user.id);
         return res.data;
 
         }else{
@@ -193,6 +194,7 @@ export const verifyEmailLogin = async (email, otp) => {
        if(res.data.message && res.data.token){
         localStorage.setItem('accessToken', res.data.token);
         localStorage.setItem('userName', res.data.user.email);
+        localStorage.setItem('userId', res.data.user.id);
         return res.data;
 
         }else{
@@ -226,4 +228,78 @@ export const getBrand = async (fetchBrand) => {
     res.status(500).json(error)
   }
 
+};
+
+
+export const removeCart = async ( productId, userId) => {
+  console.log(userId, productId, "remove cart api >>>>>>>");
+
+  try {
+    const res = await axios.delete(`${BASE_URL}users/removeCart`, {
+      data: {productId, userId  }, // 👈 body must be inside "data"
+    });
+
+    return res.data;
+  } catch (error) {
+    console.error("Error in removeCart:", error);
+    throw error;
+  }
+};
+
+
+export const getSearch = async (query) => {
+  try {
+      const res = await axios.get(`${BASE_URL}users/search`, {
+                params: { query },
+            });
+            console.log(res.data?.results, "search data >>>>>>>");
+            
+      return res.data?.results
+  } catch (error) {
+    res.status(500).json(error)
+  }
+};
+
+
+export const getSummery = async (userId) => {
+  try {
+      const res = await axios.get(`${BASE_URL}users/summary/${userId}`);
+            
+      return res.data
+  } catch (error) {
+    res.status(500).json(error)
+  }
+};
+
+
+export const applayVoucher = async (code, tottelAmmount) => {
+  try {
+    const response = await axios.post(`${BASE_URL}users/applyVoucher`, {
+      code : code,
+      cartTotal : tottelAmmount
+    });
+
+    console.log(response.data, "applay voucher  response >>>>>>>>>");
+    return response.data;
+  } catch (error) {
+    console.error("Error adding to cart:", error);
+    throw error;
+  }
+};
+
+
+
+export const updateQuantity = async (userId, id, newQty) => {
+  try {
+    const response = await axios.put(`${BASE_URL}users/cartUpdateQty`, {
+      userId : userId,
+      productId : id,
+      quantity: newQty
+    });
+    console.log(response.data, "cart product qty update  response >>>>>>>>>");
+    return response.data;
+  } catch (error) {
+    console.error("cart product qty update error:", error);
+    throw error;
+  }
 };

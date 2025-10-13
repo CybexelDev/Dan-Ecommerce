@@ -3,14 +3,30 @@ import selectedmark from "../../assets/images/profileandaddress/selectedmark.png
 import trucktrack from '../../assets/images/login/trucktrack.png'
 import alertbell from '../../assets/images/login/alertbell.png'
 import reviewstar from '../../assets/images/login/reviewstar.png'
+import { useDispatch } from "react-redux";
+// import { logout } from '../../redux/app/store'
 
 function ProfileSection() {
   const [isOpen, setIsopen] = useState(false)
-  const name = "yahyatp01@gmail.com"
+  const name = localStorage.getItem("userName");
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     setIsopen((prev) => !prev)
   }
+
+
+  const handleLogout = () => {
+    // Clear localStorage
+    localStorage.removeItem("userName");
+    localStorage.removeItem("accessToken");
+
+    // Clear redux state
+    dispatch({ type: "LOGOUT" });
+
+    // Redirect
+    window.location.href = "/";
+  };
 
   return (
     <div className="relative flex flex-col w-full bg-white aspect-[100/15]  rounded-b-[1vw] rounded-tl-[1vw] pb-[2vw] pl-[2.2%] pt-[1.5vw]">
@@ -52,15 +68,15 @@ function ProfileSection() {
             </div>
             <div className="max-w-[12vw] text-[1.1vw] font-semibold text-black/55  ">
               <p className='hover:overflow-x-visible  '>{name}</p>
-            </div>  
+            </div>
           </div>
           {/* Logout button */}
 
           {isOpen ? (
             <div className="w-full flex  items-center ms-[5vw] mt-[2vw]">
-            <button className='w-[75%] aspect-[5/1.1] bg-black text-white rounded-[1vw] font-semibold text-[1.1vw]'>Logout</button>
-          </div>
-          ): null}
+              <button onClick={handleLogout } className='w-[75%] aspect-[5/1.1] bg-black text-white rounded-[1vw] font-semibold text-[1.1vw]'>Logout</button>
+            </div>
+          ) : null}
         </div>
 
         {/* Right side (only visible when isOpen) */}
