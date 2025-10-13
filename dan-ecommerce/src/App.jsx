@@ -9,6 +9,8 @@ import LoginAndSignup from './pages/loginandsignup/LoginAndSignup'
 import AboutHome from './pages/about/AboutHome'
 import { useSelector } from "react-redux";
 import ProfileAndAddress from './pages/profile_and_address_page/ProfileAndAddress';
+import Admin from './Admin/pages/Admin';
+import AdminLogin from './Admin/pages/Login';
 
 
 function App() {
@@ -44,7 +46,15 @@ function App() {
 
     //   </Routes>
     // </Router>
-    <ProfileAndAddress />
+    
+    // <ProfileAndAddress />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<Admin />} />
+      </Routes>
+    </Router>
 
   )
 }

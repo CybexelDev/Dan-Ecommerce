@@ -31,14 +31,14 @@ function MostPopular() {
       {/* Starting Card Section */}
       <div className=" w-full flex justify-between aspect-[1440/541] ">
 
-        {popularProducts.map((product) => (
+        {/* {popularProducts.map((product) => (
           <MostPopularCard
             image={product.images[0]}
             title={product.productName}
             offer={product.discount}
             price={product.rate}
           />
-        ))}
+        ))} */}
 
         {/* <MostPopularCard
             image={mp2}
