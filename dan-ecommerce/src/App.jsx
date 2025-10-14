@@ -11,9 +11,8 @@ import { useSelector } from "react-redux";
 import ProfileAndAddress from './pages/profile_and_address_page/ProfileAndAddress';
 import Admin from './Admin/pages/Admin';
 import AdminLogin from './Admin/pages/Login';
-import BlogPage from './pages/blogPage/blogPage';
 import SupportPage from './pages/SupportPage/SupportPage';
-
+import BlogPage from './pages/blogPage/BlogPage';
 
 
 function App() {
