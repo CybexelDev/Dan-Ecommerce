@@ -27,13 +27,13 @@ function Collections() {
 
                 </div>
                 <div className=" h-[77%] flex justify-between">
-                    {/* {data.map((item) => (
+                    {data.map((item) => (
                         <div className="w-[31.5%] aspect-[448/318] ">
                             <CollectionHomeCard
                                 image={item.image[0]}
                                 category={item.category} />
                         </div>
-                    ))} */}
+                    ))}
 
                     {/* <div className="w-[31.5%] aspect-[448/318] ">
                     <CollectionHomeCard

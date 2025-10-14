@@ -1,8 +1,8 @@
 import React from 'react'
 
-function BlogListCard({ title, image, description }) {
+function BlogListCard({ title, image, description, onClick }) {
     return (
-        <div className='w-[31.2%] aspect-[448/364] flex flex-col justify-between'>
+        <div onClick={onClick} className='w-[31.2%] aspect-[448/364] flex flex-col justify-between cursor-pointer '>
             <div className="h-[82.5%] aspect-[448/300]  relative">
                 {/* <div className="absolute w-[25%] aspect-[112/49] bg-white rounded-br-[1.5vw]">h</div> */}
                 <div className="absolute bg-white top-0 left-0 w-[25%] aspect-[113/49]  rounded-br-[1vw] flex justify-center items-center
@@ -16,11 +16,11 @@ function BlogListCard({ title, image, description }) {
                     </div>
                 </div>
                 <img src={image} alt="bloglistimage"
-                    className='w-full h-full rounded-[1.5vw]' />
+                    className='w-full h-full rounded-[1.5vw] ' />
             </div>
             <div className="h-[15%] aspect-[448/54] ">
-                <p className='text-[13px]'>{description.length > 200 ?
-                    description.slice(0, 200) + "..."
+                <p className='text-[13px]'>{description.length > 150 ?
+                    description.slice(0, 150) + "..."
                     : description}
                 </p>
             </div>

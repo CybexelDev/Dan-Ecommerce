@@ -3,6 +3,7 @@ import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_BASE_URL ;
 
 
+
 export const getCategorys = async (fetchcategorydata) => {
     try {
         const response = await axios.get(`${BASE_URL}/users/getcategory`);
@@ -302,5 +303,20 @@ export const updateQuantity = async (userId, id, newQty) => {
   } catch (error) {
     console.error("cart product qty update error:", error);
     throw error;
+  }
+};
+
+
+
+
+export const getAddress = async (userId) => {
+  try {
+      const res = await axios.get(`${BASE_URL}users/getAddresses`, {
+      params: { userId }, // ✅ sends ?userId=68b2927106e5c87d02b7d48a
+    });
+             console.log("User addresses:", res.data);
+      return res.data
+  } catch (error) {
+    res.status(500).json(error)
   }
 };

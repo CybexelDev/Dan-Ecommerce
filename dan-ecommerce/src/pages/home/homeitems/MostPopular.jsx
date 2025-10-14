@@ -9,6 +9,10 @@ import { useNavigate } from "react-router-dom";
 function MostPopular() {
 
   const [popularProducts, setPopularProducts] = useState([]);
+
+
+  console.log(popularProducts, "popular products >>>>>>>");
+  
   const navigate = useNavigate();
   useEffect(() => {
     getpopulearProducts(setPopularProducts);

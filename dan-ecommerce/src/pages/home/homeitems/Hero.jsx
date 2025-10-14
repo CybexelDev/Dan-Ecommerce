@@ -23,18 +23,18 @@ const [images, setImages] = useState([]);
 
   // ✅ fetch header images from backend
   useEffect(() => {
-    // const fetchHeaderImages = async () => {
-    //   try {
-    //     const res = await getHeader();
-    //     // take all webImage arrays and flatten them
-    //     const headerImages = res.data.flatMap(item => item.webImage);
-    //     setImages(headerImages); // only backend images
-    //   } catch (error) {
-    //     console.error("Error fetching header:", error);
-    //   }
-    // };
+    const fetchHeaderImages = async () => {
+      try {
+        const res = await getHeader();
+        // take all webImage arrays and flatten them
+        const headerImages = res.data.flatMap(item => item.webImage);
+        setImages(headerImages); // only backend images
+      } catch (error) {
+        console.error("Error fetching header:", error);
+      }
+    };
 
-    // fetchHeaderImages();
+    fetchHeaderImages();
   }, []);
 
   // next / prev buttons
