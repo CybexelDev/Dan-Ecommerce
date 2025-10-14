@@ -1,6 +1,6 @@
 import axios from 'axios';
 // import api from './axiosInstence';
-const BASE_URL = 'https://dan-e-commercebe-ddiq.onrender.com/api' ;
+const BASE_URL = import.meta.env.VITE_BASE_URL ;
 
 
 export const getCategorys = async (fetchcategorydata) => {
