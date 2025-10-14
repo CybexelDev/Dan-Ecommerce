@@ -19,7 +19,7 @@ function BlogListCard({ title, image, description, onClick }) {
                     className='w-full h-full rounded-[1.5vw] ' />
             </div>
             <div className="h-[15%] aspect-[448/54] ">
-                <p className='text-[13px]'>{description.length > 200 ?
+                <p className='text-[13px]'>{description.length > 150 ?
                     description.slice(0, 150) + "..."
                     : description}
                 </p>

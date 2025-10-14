@@ -12,8 +12,6 @@ const initialAuthState = {
   isLoggedIn: false,
 };
 
-
-
 function authReducer(state = initialAuthState, action) {
   switch (action.type) {
     case "SET_USER":

@@ -100,9 +100,10 @@ function BlogSection() {
                 </div>
             )}
 
-            {/* Blog List */}
-            <div className="w-full h-[35.5%] flex justify-between">
-                {blogs.slice(1).map((product) => (
+
+            {/* Blog List Starting */}
+            <div className="w-full h-[35.5%]  flex gap-4">
+              {blogs.slice(1).map((product) => (
                     <BlogListCard
                         key={product._id}
                         title={product?.category}

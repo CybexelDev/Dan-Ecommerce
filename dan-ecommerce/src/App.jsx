@@ -9,8 +9,11 @@ import LoginAndSignup from './pages/loginandsignup/LoginAndSignup'
 import AboutHome from './pages/about/AboutHome'
 import { useSelector } from "react-redux";
 import ProfileAndAddress from './pages/profile_and_address_page/ProfileAndAddress';
+import Admin from './Admin/pages/Admin';
+import AdminLogin from './Admin/pages/Login';
 import BlogPage from './pages/blogPage/blogPage';
 import SupportPage from './pages/SupportPage/SupportPage';
+
 
 
 function App() {
@@ -21,6 +24,7 @@ function App() {
   const token = localStorage.getItem("accessToken");
 
   return (
+
     <Router>
       <Routes>
 
@@ -41,11 +45,12 @@ function App() {
             <>
               <Route path="*" element={<LoginAndSignup />} />
               <Route path="/login" element={<LoginAndSignup />} />
+              <Route path="/admin" element={<AdminLogin />} />
+              <Route path="/admin/dashboard" element={<Admin />} />
             </>
           )
 
         }
-
 
       </Routes>
     </Router>
