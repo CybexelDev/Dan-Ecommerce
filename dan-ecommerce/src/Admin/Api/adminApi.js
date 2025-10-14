@@ -5,7 +5,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const getPopularProducts = async (fetchProductdata) => {
     try {
-        const response = await axios.get(`${BASE_URL}admin/getProduct`);
+        const response = await axios.get(`${BASE_URL}/admin/getProduct`);
         fetchProductdata(response.data);
     } catch (error) {
         console.error("Error fetching products:", error);
@@ -15,7 +15,7 @@ export const getPopularProducts = async (fetchProductdata) => {
 
 export const addNewProduct = async (productData) => {
     try {
-        const response = await axios.post(`${BASE_URL}admin/addProduct`, productData, {
+        const response = await axios.post(`${BASE_URL}/admin/addProduct`, productData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -29,7 +29,7 @@ export const addNewProduct = async (productData) => {
 
 export const updateProduct = async (productId, updatedData) => {
     try {
-        const response = await axios.put(`${BASE_URL}admin/product/${productId}`, updatedData, {
+        const response = await axios.put(`${BASE_URL}/admin/product/${productId}`, updatedData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -43,7 +43,7 @@ export const updateProduct = async (productId, updatedData) => {
 
 export const deleteProduct = async (productId) => {
     try {
-        const response = await axios.delete(`${BASE_URL}admin/deleteProduct/${productId}`); 
+        const response = await axios.delete(`${BASE_URL}/admin/deleteProduct/${productId}`); 
         return response.data;
     } catch (error) {
         console.error("Error deleting product:", error);
@@ -53,7 +53,7 @@ export const deleteProduct = async (productId) => {
 
 export const getCategories = async (fetchCategoryData) => {
     try {
-        const response = await axios.get(`${BASE_URL}admin/getCategory`);  
+        const response = await axios.get(`${BASE_URL}/admin/getCategory`);  
         fetchCategoryData(response.data);
     } catch (error) {
         console.error("Error fetching categories:", error);
@@ -63,7 +63,7 @@ export const getCategories = async (fetchCategoryData) => {
 
 export const addCategory = async (formData) => {
     try {
-        const response = await axios.post(`${BASE_URL}admin/addCategory`, formData, {
+        const response = await axios.post(`${BASE_URL}/admin/addCategory`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -77,7 +77,7 @@ export const addCategory = async (formData) => {
 
 export const addSubcategory = async ( subcategoryData) => {
     try {
-        const response = await axios.post(`${BASE_URL}admin/addSubCategory`, subcategoryData);
+        const response = await axios.post(`${BASE_URL}/admin/addSubCategory`, subcategoryData);
         return response.data;
     } catch (error) {
         console.error("Error adding subcategory:", error);
@@ -87,7 +87,7 @@ export const addSubcategory = async ( subcategoryData) => {
 
 export const editCategory = async (categoryId, updatedData) => {
     try {
-        const response = await axios.put(`${BASE_URL}admin/updateCategory/${categoryId}`, updatedData);
+        const response = await axios.put(`${BASE_URL}/admin/updateCategory/${categoryId}`, updatedData);
         return response.data;
     } catch (error) {
         console.error("Error updating category:", error);
@@ -97,7 +97,7 @@ export const editCategory = async (categoryId, updatedData) => {
 
 export const deleteCategory = async (categoryId) => {
     try {
-        const response = await axios.delete(`${BASE_URL}admin/deleteCategory/${categoryId}`);
+        const response = await axios.delete(`${BASE_URL}/admin/deleteCategory/${categoryId}`);
         return response.data;
     } catch (error) {
         console.error("Error deleting category:", error);
