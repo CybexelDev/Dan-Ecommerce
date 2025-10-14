@@ -18,8 +18,8 @@ import SupportPage from './pages/SupportPage/SupportPage';
 
 function App() {
   const [count, setCount] = useState(0)
-    const { username, accessToken, isLoggedIn } = useSelector((state) => state.auth);
-   console.log(username, accessToken, isLoggedIn , "99999999999999999999999999999");
+  const { username, accessToken, isLoggedIn } = useSelector((state) => state.auth);
+  console.log(username, accessToken, isLoggedIn, "99999999999999999999999999999");
 
   const token = localStorage.getItem("accessToken");
 
@@ -27,6 +27,8 @@ function App() {
 
     <Router>
       <Routes>
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<Admin />} />
 
         {token ? (
           <>
@@ -45,8 +47,7 @@ function App() {
             <>
               <Route path="*" element={<LoginAndSignup />} />
               <Route path="/login" element={<LoginAndSignup />} />
-              <Route path="/admin" element={<AdminLogin />} />
-              <Route path="/admin/dashboard" element={<Admin />} />
+
             </>
           )
 
