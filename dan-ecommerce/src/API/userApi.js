@@ -177,6 +177,7 @@ export const verifyMobilLogin = async (mobile,otp) => {
 export const emailLogin = async (email) => {
   try {
       const res = await axios.post(`${BASE_URL}/auth/sendEmailOtp`, {email: email});
+      return res.data; // returns { message, data }
 
   } catch (error) {
     console.error("Error in email login:", error);

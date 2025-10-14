@@ -13,37 +13,37 @@ const SignupForm = () => {
   const [popup, setPopup] = useState(false); // ✅ for success popup
 
   // handle email/mobile submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    if (isEmail(value)) {
-      try {
-        await fetch("/api/signup-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: value }),
-        });
-        setStep(2);
-        setError("");
-      } catch {
-        setError("Error sending email OTP.");
-      }
-    } else if (isMobile(value)) {
-      try {
-        await fetch("/api/signup-mobile", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ mobile: value }),
-        });
-        setStep(2);
-        setError("");
-      } catch {
-        setError("Error sending mobile OTP.");
-      }
-    } else {
-      setError("Please enter a valid email or mobile number.");
-    }
-  };
+  //   if (isEmail(value)) {
+  //     try {
+  //       await fetch("/api/signup-email", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({ email: value }),
+  //       });
+  //       setStep(2);
+  //       setError("");
+  //     } catch {
+  //       setError("Error sending email OTP.");
+  //     }
+  //   } else if (isMobile(value)) {
+  //     try {
+  //       await fetch("/api/signup-mobile", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({ mobile: value }),
+  //       });
+  //       setStep(2);
+  //       setError("");
+  //     } catch {
+  //       setError("Error sending mobile OTP.");
+  //     }
+  //   } else {
+  //     setError("Please enter a valid email or mobile number.");
+  //   }
+  // };
 
   // handle OTP change
   const handleChange = (e) => {
@@ -61,36 +61,36 @@ const SignupForm = () => {
   };
 
   // handle OTP submit
-  const handleOtpSubmit = async (e) => {
-    e.preventDefault();
+  // const handleOtpSubmit = async (e) => {
+  //   e.preventDefault();
 
-    if (otp.length !== 6) {
-      setError("OTP must be 6 digits");
-      return;
-    }
+  //   if (otp.length !== 6) {
+  //     setError("OTP must be 6 digits");
+  //     return;
+  //   }
 
-    try {
-      const res = await fetch("/api/verify-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ value, otp }),
-      });
+  //   try {
+  //     const res = await fetch("/api/verify-otp", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ value, otp }),
+  //     });
 
-      const data = await res.json();
-      if (data.success) {
-        // ✅ Registration + auto login
-        setPopup(true); // show popup
-        setTimeout(() => {
-          setPopup(false);
-          // navigate("/dashboard") or home page
-        }, 3000);
-      } else {
-        setError("Invalid OTP. Please try again.");
-      }
-    } catch {
-      setError("OTP verification failed.");
-    }
-  };
+  //     const data = await res.json();
+  //     if (data.success) {
+  //       // ✅ Registration + auto login
+  //       setPopup(true); // show popup
+  //       setTimeout(() => {
+  //         setPopup(false);
+  //         // navigate("/dashboard") or home page
+  //       }, 3000);
+  //     } else {
+  //       setError("Invalid OTP. Please try again.");
+  //     }
+  //   } catch {
+  //     setError("OTP verification failed.");
+  //   }
+  // };
 
   return (
     <div>
@@ -153,7 +153,7 @@ const SignupForm = () => {
       {step === 2 && (
         <div className="flex justify-between">
           <form
-            onSubmit={handleOtpSubmit}
+            // onSubmit={handleOtpSubmit}
             className="w-[55%] pt-[6%] px-[3%] pb-[1%] flex flex-col gap-[1vw]"
           >
             {/* User entered email/mobile (read-only) */}
@@ -175,7 +175,7 @@ const SignupForm = () => {
               />
               <button
                 type="button"
-                onClick={() => handleSubmit(new Event("submit"))}
+                // onClick={() => handleSubmit(new Event("submit"))}
                 className="absolute right-[1vw] top-1/2 -translate-y-1/2 text-blue-500 underline text-[1vw]"
               >
                 Resend OTP
