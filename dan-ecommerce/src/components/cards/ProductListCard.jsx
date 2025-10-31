@@ -4,7 +4,7 @@ import { CgArrowTopRight } from "react-icons/cg";
 function ProductListCard({id,image,title,price, isOpen, click}) {
 
   return (
-    <a onClick={click}  href="#" id={id} className={` ${ isOpen ? 'w-[31.15%]' :'w-[22.1%]' } h-[29.46%] aspect-[273/335] flex flex-col `}>
+    <a onClick={click}  href="#" id={id} className={` ${ isOpen ? 'w-[31.15%]' :'w-[22.1%]' } h-[29.46%] aspect-[273/335] flex flex-col mt-3`}>
         <div className='relative w-full h-[81.1%] bg-[#f4f4f4] rounded-[1vw] flex justify-center items-center'>
             <img src={image} alt=""
              className='w-[100%] h-full object-center object-cover  rounded-[1vw] overflow-hidden' />
@@ -26,7 +26,7 @@ function ProductListCard({id,image,title,price, isOpen, click}) {
                 </h5>
             </div>
             <div className="w-full h-[39%] flex justify-start  ">
-                <p className='text-black/50 text-[1.2vw] font-semibold'>USD ${price}</p>
+                <p className='text-black/50 text-[1.2vw] font-semibold'>AED {price}</p>
             </div>
         </div>
     </a>

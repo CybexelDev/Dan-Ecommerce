@@ -7,14 +7,15 @@ import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 import RelatedItemsCard from './RelatedItemsCard';
 import { useParams } from "react-router-dom";
-import { addCart, getRelatedProduct, getSingleProduct } from '../../API/userApi';
+import { addCart, checkoutSession, getRelatedProduct, getSingleProduct } from '../../API/userApi';
 import { useState } from 'react';
 import Footer from '../home/homeitems/Footer';
+import { loadStripe } from '@stripe/stripe-js';
+
 
 
 function ProductDetail() {
     // function for image section 
-
 
     const { id } = useParams();
 
@@ -25,9 +26,11 @@ function ProductDetail() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [expanded, setExpanded] = useState(false);
 
+    const userId = localStorage.getItem("userId");
+
     // console.log(categoryId, "categoryValue iddddd>>>>>>>>>>>>>>");
 
-    // console.log(products, "productValue>>>>>>>>>>>>>>");
+    console.log(products, "productValue>>>>>>>>>>>>>>");
 
     console.log(relatedProducts, "relatedProducts>>>>>>>>>>>>>>");
 
@@ -82,15 +85,15 @@ function ProductDetail() {
 
     const addToCart = async (productId) => {
         console.log(productId, "productIdddddddddddddddddd");
-        const userId = "68c7c33bea2c350bb430b20d";
+        // const userId = "68c7c33bea2c350bb430b20d";
         const data = await addCart(userId, productId, quantity);
         console.log("Cart updated:", data);
         alert("Product added to cart!");
     }
 
-  
 
-   const scrollContainerRef = useRef(null);
+
+    const scrollContainerRef = useRef(null);
 
     // Simple scroll functions to show 3 items at a time
     const scrollLeft = () => {
@@ -108,6 +111,57 @@ function ProductDetail() {
             container.scrollBy({ left: cardWidth * 3, behavior: 'smooth' });
         }
     };
+
+
+
+    const stripePromise = loadStripe(
+        "pk_test_51SKvYGENUDBxwMcPbACxGGAhWGMgVOUPiDCgJxNYOIHe49kHrxp3i3spJM5B3XXo1b2APUejMdPMqwradlutXfZo00I4FbGhTc"
+    );
+
+    const makePayment = async (products, quantity) => {
+
+        console.log(products, "productsssssssssssssssss $$$$$$$$$$$$$$$");
+        
+        try {
+            const stripe = await stripePromise;
+
+            const productData = {
+                productId: products._id,
+                productName: products.productName,
+                rate: products.rate,
+                discountedRate: products.discountedRate,
+                quantity: quantity, 
+                totalDiscountValue: products.discountedRate,
+            };
+
+            const body = { products: [productData] };
+
+            // 💳 Create checkout session
+            const response = await checkoutSession(body);
+
+
+
+            // ✅ Stripe now provides a session URL (not sessionId)
+            const sessionUrl = response.data.url;
+
+            if (!sessionUrl) {
+                console.error("No session URL returned from backend!");
+                return;
+            }
+
+            // 🚀 Redirect to Stripe Checkout (new method)
+            window.location.href = sessionUrl;
+        } catch (error) {
+            console.error("Error creating checkout session:", error);
+            alert("Something went wrong with payment. Please try again.");
+        }
+    };
+
+
+
+
+
+
 
     return (
         <>
@@ -130,9 +184,9 @@ function ProductDetail() {
                         after:content-[''] after:absolute after:w-[1.5vw] after:h-[1.5vw] after:z-10 after:bg-[radial-gradient(circle_at_bottom_left,transparent_0%,_transparent_75%,_white_76%,_white_100%)]
                         after:-bottom-[1.5vw] after:right-[0vw]"
                         >
-                            <div className="h-[90%] aspect-square bg-[#f4f4f4] rounded-full flex justify-center items-center">
+                            <div onClick={() => addToCart(products._id)} className="h-[90%] aspect-square bg-[#f4f4f4] rounded-full flex justify-center items-center cursor-pointer">
                                 <img src={carticon} alt=""
-                                    className='rounded-full w-[50%] ' />
+                                    className='rounded-full w-[50%] hover:scale-[1.02]' />
                             </div>
                         </div>
                         <div className="w-full h-[91.4%] flex flex-col justify-between">
@@ -141,7 +195,7 @@ function ProductDetail() {
                                     className='w-full h-full rounded-[1vw]' />
                             </div>
                             <div className="w-full h-[13.4%]  flex justify-center ">
-                                <div className="w-[54.5%]  flex justify-between">
+                                <div className="w-[54.5%]  flex gap-3.5">
                                     {/* <ProductSmallImageCard
                                     image={pimage1} />
                                 <ProductSmallImageCard
@@ -185,9 +239,18 @@ function ProductDetail() {
                                                 </div>
                                             </div>
                                             <div className="w-full h-[16%] ">
-                                                <div className="h-full aspect-[165/47]  flex justify-center items-center">
-                                                    <p className='text-[2.5vw] text-[#7C0101] font-semibold'>$ {products.rate}</p>
+                                                <div className="h-full aspect-[165/47] flex gap-2 items-center">
+                                                    {/* Original Price (Strikethrough) */}
+                                                    <p className="text-[13px] text-gray-500 line-through flex">
+                                                        AED{products.rate}
+                                                    </p>
+
+                                                    {/* Discounted Price */}
+                                                    <p className="text-[33px] text-[#7C0101] flex font-semibold">
+                                                        AED{products.discountedRate}
+                                                    </p>
                                                 </div>
+
                                             </div>
                                         </div>
                                         <div className="w-[9.88%] h-full "></div>
@@ -235,7 +298,7 @@ function ProductDetail() {
                                             </div>
                                         </div>
                                         <div className="w-[48.4%] h-full">
-                                            <button className='bg-black w-full h-full rounded-[1vw] text-white text-[1.2vw] font-semibold'>Buy now</button>
+                                            <button onClick={()=>makePayment(products, quantity)} className='bg-black w-full h-full rounded-[1vw] text-white text-[1.2vw] font-semibold'>Buy now</button>
                                         </div>
                                     </div>
                                     {/* End of button section */}
@@ -284,48 +347,48 @@ function ProductDetail() {
                             </div> */}
 
 
- <div className="w-full h-[28.2%] flex flex-col justify-between">
-            <div className="w-full h-[12.61%] flex justify-between items-center">
-                <h5 className='text-[1.2vw] font-semibold'>You may also like</h5>
-                
-                {/* Navigation Buttons */}
-                <div className="flex gap-2">
-                    <button 
-                        onClick={scrollLeft}
-                        className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
-                    >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                    </button>
-                    <button 
-                        onClick={scrollRight}
-                        className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
-                    >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+                            <div className="w-full flex flex-col justify-between">
+                                <div className="w-full h-[12.61%] flex justify-between items-center">
+                                    <h5 className='text-[1.2vw] font-semibold'>You may also like</h5>
 
-            {/* Scrollable Container - Show 3 items */}
-            <div 
-                ref={scrollContainerRef}
-                className="w-full h-[100%] flex gap-3.5 overflow-x-auto scrollbar-hide scroll-smooth mt-3.5"
-            >
-                {relatedProducts.map((product) => (
-                    <div key={product?._id} className="flex-shrink-0 w-1/3"> {/* Each card takes 1/3 of container */}
-                        <RelatedItemsCard
-                            image={product?.images[0]}
-                            title={product?.productName}
-                            itemLink={product?._id}
-                        />
-                    </div>
-                ))}
-            </div>
+                                    {/* Navigation Buttons */}
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={scrollLeft}
+                                            className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
+                                        >
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                            </svg>
+                                        </button>
+                                        <button
+                                            onClick={scrollRight}
+                                            className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
+                                        >
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
 
-            <style jsx>{`
+                                {/* Scrollable Container - Show 3 items */}
+                                <div
+                                    ref={scrollContainerRef}
+                                    className="w-full h-[100%] flex gap-3.5 overflow-x-auto scrollbar-hide scroll-smooth mt-3.5"
+                                >
+                                    {relatedProducts.map((product) => (
+                                        <div key={product?._id} className="flex-shrink-0 w-1/3"> {/* Each card takes 1/3 of container */}
+                                            <RelatedItemsCard
+                                                image={product?.images[0]}
+                                                title={product?.productName}
+                                                itemLink={product?._id}
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <style jsx>{`
                 .scrollbar-hide::-webkit-scrollbar {
                     display: none;
                 }
@@ -334,14 +397,14 @@ function ProductDetail() {
                     scrollbar-width: none;
                 }
             `}</style>
-        </div>
+                            </div>
 
 
 
 
 
 
-                           {/* <div className="w-full mt-[1vw] relative">
+                            {/* <div className="w-full mt-[1vw] relative">
   
   <div className="w-full mb-[0.5vw] flex justify-between items-center">
     <h5 className="text-[1.2vw] font-semibold">You may also like</h5>

@@ -2,27 +2,9 @@ import React, { useState } from "react";
 import TestimonialCard from "../homeitems/TestimonalCard";
 import TestimonalButton from "./TestimonalButton";
 import TestimonalClients from "./TestimonalClients";
-import authorimg from "../../../assets/images/testimonals/authorprofile.png"
-import clientimg from "../../../assets/images/testimonals/clientlogo.png"
 import { useEffect } from "react";
 import { getBrand, getTestimaonial } from "../../../API/userApi";
 
-
-// dummy data (replace with API later)
-const testimonialsData = [
-  { name: "John Doe", image: authorimg, quote: "Showcase customer testimonials that build trust and inspire confidence in your products.", rating: 4.5 },
-  { name: "Jane Smith", image: authorimg, quote: "Loved the experience!Loved the experience!", rating: 1 },
-  { name: "Jane Smith", image: authorimg, quote: "Loved the experience!Loved the experience!", rating: 2.5 },
-  { name: "Jane Smith", image: authorimg, quote: "Loved the experience!Loved the experience! Loved the experience!Loved the experience!", rating: 5 },
-];
-
-const clientsData = [
-  { name: "Client A", image: clientimg },
-  { name: "Client B", image: clientimg },
-  { name: "Client C", image: clientimg },
-  { name: "Client D", image: clientimg },
-  { name: "Client E", image: clientimg },
-];
 
 function Testimonal() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,6 +13,19 @@ function Testimonal() {
 
   console.log(testimonals, "testimonals data >>>>>>>>>");
   
+
+  useEffect(() => {
+
+    if (testimonals.length === 0) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === testimonals.length - 1 ? 0 : prevIndex + 1
+      );
+
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [testimonals]);
 
   const handleNext = () => {
     if (currentIndex < testimonals.length - 1) {

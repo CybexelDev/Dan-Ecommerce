@@ -15,6 +15,10 @@ function CollectionsPage() {
     const [firstCategoryId, setFirstCategoryId] = useState("");
     const [totalProducts, setTotalProducts] = useState(0);
     const [selectedCategoryName, setSelectedCategoryName] = useState("")
+    const [selectedFilter, setSelectedFilter] = useState("");
+
+    console.log( selectedFilter, "selcted Fileterrrr");
+    
     // search
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
@@ -62,8 +66,8 @@ function CollectionsPage() {
 
     // send selected option to backend
     const handleSelect = (option) => {
-        setIsSelected(option);
-        setIsSortOpen(false);
+        setSelectedFilter(option);
+        // setIsSortOpen(false);
     }
 
     useEffect(() => {
@@ -175,12 +179,12 @@ function CollectionsPage() {
                             {/* Dropdown menu */}
                             {isSortOpen && (
                                 <div className={`absolute right-[3.5vw] top-[.5vw]  w-[54.1%] aspect-[275/314] bg-white shadow-2xl  ${isCategoryOpen ? 'rounded-[1.5vw]' : 'rounded-[2vw]'}  z-10 flex items-center justify-center `}>
-                                    <ul className="py-2  w-[92%] h-[87.5%] flex flex-col justify-between ">
+                                    <ul className="py-2   w-[92%] h-[87.5%] flex flex-col justify-between ">
                                         {sortOptions.map((option) => (
                                             <li
                                                 key={option}
                                                 onClick={() => handleSelect(option)}
-                                                className={`px-4 py-2 cursor-pointer hover:bg-gray-100 font-semibold ${isCategoryOpen ? ' text-[1.2vw]' : 'text-[1.5vw]'} flex items-center ${isSelected === option ? "w-full h-[18.18%] shadow shadow-black/10 rounded-[1vw] font-semibold text-[#BC7050]" : ""
+                                                className={`px-4 py-2 cursor-pointer hover:bg-gray-100 font-semibold ${isCategoryOpen ? ' text-[1.2vw]' : 'text-[1.5vw]'} flex items-center ${selectedFilter === option ? "w-full h-[18.18%] shadow shadow-black/10 rounded-[1vw] font-semibold text-[#BC7050]" : ""
                                                     }`}
                                             >
                                                 {option}
@@ -192,7 +196,6 @@ function CollectionsPage() {
                             {/* Sort section end */}
                         </div>
                     </div>
-
 
                     {/* Items list section */}
                     {!isCategoryOpen ? (
@@ -222,7 +225,7 @@ function CollectionsPage() {
                                 </div>
                                 {/* Products List Section */}
                                 <div className="w-[66.75%] h-full ">
-                                    <div className="w-full h-[92.89%] flex justify-between ">
+                                    <div className="w-full flex justify-between ">
                                         <ProductList productLengthdata={setTotalProducts} productData={products} isOpen={isCategoryOpen} />
                                     </div>
                                 </div>

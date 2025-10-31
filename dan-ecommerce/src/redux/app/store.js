@@ -51,11 +51,81 @@ function cartReducer(state = initialCartState, action) {
   }
 }
 
+const initialAddressAddedState = {
+  addressAddStatus: false,
+};
+
+function addressReducer(state = initialAddressAddedState, action) {
+  switch (action.type) {
+    case "SET_TRUE":
+      return { ...state, addressAddStatus: true };
+    case "SET_FALSE":
+      return { ...state, addressAddStatus: false };
+    default:
+      return state;
+  }
+}
+
+const initialDeliverHereState = {
+  addressType: null,
+  area: null,
+  city: null,
+  fullName: null,
+  houseNo: null,
+  landmark: null,
+  phoneNumber: null,
+  pincode: null,
+  state: null,
+  _id: null,
+};
+
+function deliveryHereAddress(state = initialDeliverHereState, action) {
+  switch (action.type) {
+    case "SET_DELIVERY_ADDRESS":
+      return {
+        ...state,
+        addressType: action.payload.addressType,
+        area: action.payload.area,
+        city: action.payload.city,
+        fullName: action.payload.fullName,
+        houseNo: action.payload.houseNo,
+        landmark: action.payload.landmark,
+        phoneNumber: action.payload.phoneNumber,
+        pincode: action.payload.pincode,
+        state: action.payload.state,
+        _id: action.payload._id,
+      };
+    case "REMOVE_DELIVERY_ADDRESS":
+      return {
+        ...state,
+        addressType: null,
+        area: null,
+        city: null,   
+        fullName: null,
+        houseNo: null,
+        landmark: null,
+        phoneNumber: null,
+        pincode: null,
+        state: null,
+        _id: null,
+      };
+    default:
+      return state;
+  }
+}
+
+
+
 // ⬇️ If you have more reducers, you can add them here
 const rootReducer = combineReducers({
   auth: authReducer,
   cart: cartReducer,
+  addressStatus: addressReducer,
+  deliveryAddress:deliveryHereAddress,
 });
+
+
+
 
 // ✅ Persist Config
 const persistConfig = {

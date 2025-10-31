@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from "../../assets/images/home/logo.png"
 import { FaSearch } from "react-icons/fa";
-import { FaShoppingBasket, FaUser } from "react-icons/fa";
+import { FaShoppingBasket, FaUser, FaBox } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 function HomeNav() {
@@ -22,6 +22,7 @@ function HomeNav() {
     <li className=' cursor-pointer' onClick={()=>navigate('/support')}>Support</li>
     <li className='text-[1.1vw] cursor-pointer' onClick={()=>navigate('/address')}> <FaUser /></li>
     <li className='text-[1.2vw] cursor-pointer' onClick={()=>navigate('/cart')}><FaShoppingBasket /></li>
+        <li className='text-[1.2vw] cursor-pointer' onClick={() => navigate('/orders')}><FaBox /></li>
   </ul>
 </div>
 

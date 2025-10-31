@@ -11,7 +11,6 @@ const ProductList = ({ isOpen, productData, productLengthdata }) => {
 
   const [product, setProduct] = useState([])
 
-
   // console.log(product, "productData in product list rrrrrrrrrrrrrr");
 
   const navigate = useNavigate();

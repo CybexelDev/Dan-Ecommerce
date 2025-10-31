@@ -111,9 +111,9 @@ const LoginForm = () => {
           dispatch({
           type: "SET_USER",
           payload: {
-            username: response?.user?.email,
+            username: response?.user?.phone,
             accessToken: response?.token,
-            userId: response?.user?.id,
+            userId: response?.user?._id,
           },
         });
 

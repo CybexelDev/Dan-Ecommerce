@@ -16,8 +16,8 @@ function LoginAndSignup() {
   return (
     <div className="relative w-full aspect-[1440/910]  pr-[5.48%]  pl-[3.62%] pt-[10vw] pb-[10vw] bg-white">
       <Nav />
-      <div className="w-full h-full  flex justify-between">
-        <div className=" w-[63.56%] h-full flex flex-col justify-between ">
+      <div className="w-full h-full  flex sm:flex-row flex-col justify-between">
+        <div className=" sm:w-[63.56%] w-[100%] h-full flex flex-col justify-between ">
           {/* Form Section start */}
           <div
             style={{ boxShadow: "0px 1px 102px 0px rgba(167, 167, 167, 0.25)" }}
@@ -54,7 +54,7 @@ function LoginAndSignup() {
             <p>Continue shopping</p>
           </a>
         </div>
-        <div className=" w-[33.61%] h-full flex justify-start">
+        <div className=" sm:w-[33.61%] w-[100%] h-full flex sm:justify-start justify-end sm:mt-0 mt-[3vw] ">
           <div className="w-full h-[85.62%]  rounded-[2vw] ">
             <LoginSignupToggleCard
               isLogin={isLogin}
