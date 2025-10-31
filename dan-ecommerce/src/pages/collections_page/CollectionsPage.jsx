@@ -166,7 +166,7 @@ function CollectionsPage() {
                                 {/* No results message */}
                                 {results.length === 0 && query && (
                                     <p className="absolute top-full left-0 right-0 mt-2 p-4 bg-white border border-gray-200 rounded-lg shadow-lg text-gray-500">
-                                        No products found.
+                                        No products found!
                                     </p>
                                 )}
                             </div>
