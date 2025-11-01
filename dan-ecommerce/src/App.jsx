@@ -28,10 +28,7 @@ function App() {
       <Routes>
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<Admin />} />
-
-        {token ? (
-          <>
-            <Route path="*" element={<Home />} />
+          <Route path="*" element={<Home />} />
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/collections" element={<CollectionsPage />} />
@@ -39,18 +36,8 @@ function App() {
             <Route path="/address" element={<ProfileAndAddress />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/support" element={<SupportPage />} />
-          </>
-        ) :
-
-          (
-            <>
-              <Route path="*" element={<LoginAndSignup />} />
-              <Route path="/login" element={<LoginAndSignup />} />
-
-            </>
-          )
-
-        }
+              <Route path="login" element={<LoginAndSignup />} />
+              <Route path="/signup" element={<LoginAndSignup />} />
 
       </Routes>
     </Router>
